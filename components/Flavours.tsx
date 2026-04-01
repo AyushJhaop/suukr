@@ -140,12 +140,12 @@ export default function Flavours() {
                                 }}
                                 transition={{ duration: 0, ease: "easeInOut", delay: 0  }}
                             >
-                                <span className="relative z-10">{activeFlavor.ctaText}</span>
+                                <span className="relative z-9">{activeFlavor.ctaText}</span>
                             </motion.button>
                         </div>
 
                         {/* Selection Bar (Bottom Left) */}
-                        <div className="absolute bottom-10 left-6 lg:left-13 flex space-x-5">
+                        <div className="absolute bottom-10 left-6 lg:left-13 flex space-x-5" style={{ zIndex: 10 }}>
                             {flavorStates.map((flavor, index) => (
                                 <motion.button
                                     key={flavor.id}
@@ -196,16 +196,17 @@ export default function Flavours() {
                     </div>
 
                     {/* Hero Visual (Right - 40%) */}
-                    <div className="w-2/5 relative flex items-center justify-start overflow-visible" style={{ transform: 'translateX(-92%)' }}>
+                    <div className="w-2/5 relative flex items-center justify-start overflow-visible" style={{ transform: 'translateX(-78.3%)' }}>
                         <motion.div 
                             key={activeFlavor.image}
                             className="relative"
                             style={{ 
                                 width: '300%', 
                                 height: '300%',
-                                minWidth: '975px',
-                                minHeight: '975px',
-                                transform: 'translateX(-60%)'
+                                minWidth: '850px',
+                                minHeight: '850px',
+                                transform: 'translateX(-60%)',
+                                zIndex: 1
                             }}
                             initial={{ opacity: 0, scale: 0.8, x: 50 }}
                             animate={{ opacity: 1, scale: 1, x: 0 }}
@@ -215,8 +216,8 @@ export default function Flavours() {
                                 src={activeFlavor.image}
                                 alt={activeFlavor.name}
                                 fill
-                                className="object-contain drop-shadow-2xl"
-                                sizes="(max-width: 768px) 600px, 1000px"
+                                className="object-contain drop-shadow-3xl"
+                                sizes="(max-width: 768px) 90vw, 40vw"
                                 priority
                                 unoptimized
                             />

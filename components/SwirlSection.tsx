@@ -12,8 +12,6 @@ export default function SwirlSection() {
             { text: "SWIRL", type: "hollow", img: "/images/mango_froyo.png" },
             { text: "○", type: "separator" },
             { text: "FUN", type: "hollow", img: "/images/strawberry_froyo.png" },
-            { text: "○", type: "separator" },
-            { text: "SWEET", type: "solid", img: "/images/yole_froyo.png" },
         ],
         [
             { text: "○", type: "separator" },
@@ -24,8 +22,6 @@ export default function SwirlSection() {
         ],
         [
             { text: "FUN", type: "hollow", img: "/images/strawberry_froyo.png" },
-            { text: "○", type: "separator" },
-            { text: "SWEET", type: "solid", img: "/images/yole_froyo.png" },
             { text: "○", type: "separator" },
             { text: "SWIRL", type: "hollow", img: "/images/mango_froyo.png" },
             { text: "○", type: "separator" },
@@ -90,18 +86,6 @@ export default function SwirlSection() {
                         </motion.div>
                     )}
                 </AnimatePresence>
-            </div>
-
-            {/* Fallback image if touch device where hover is difficult to trigger */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 md:hidden opacity-30 pointer-events-none blur-[2px]">
-                <div className="w-[220px] h-[300px] rounded-full overflow-hidden relative">
-                    <Image
-                        src="/images/yole_froyo.png"
-                        fill
-                        className="object-cover scale-110"
-                        alt="Hovered Flavor Base"
-                    />
-                </div>
             </div>
 
         </section>
