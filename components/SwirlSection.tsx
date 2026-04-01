@@ -1,11 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 export default function SwirlSection() {
     const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+    const sectionRef = useRef<HTMLElement>(null);
+    
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"]
+    });
 
     const words = [
         [
@@ -31,6 +37,7 @@ export default function SwirlSection() {
 
     return (
         <section
+            ref={sectionRef}
             className="relative w-full py-24 md:py-48 bg-[#FEF2F2] flex items-center justify-center overflow-hidden z-10"
             onMouseLeave={() => setHoveredImage(null)}
         >
@@ -44,25 +51,47 @@ export default function SwirlSection() {
 
             {/* Text Grid */}
             <div className="relative z-10 flex flex-col items-center justify-center gap-6 md:gap-10 w-full max-w-[100vw] overflow-hidden py-10 md:py-20 lg:py-24">
-                {words.map((row, rIdx) => (
-                    <div key={rIdx} className="flex flex-row items-center justify-center gap-6 md:gap-12 w-max whitespace-nowrap px-4">
-                        {row.map((item, iIdx) => (
-                            <span
-                                key={iIdx}
-                                onMouseEnter={() => item.img && setHoveredImage(item.img)}
-                                onMouseLeave={() => setHoveredImage(null)}
-                                className={`
-                                    font-heading font-black text-[3rem] md:text-6xl lg:text-[7rem] cursor-crosshair transition-transform hover:scale-[1.03] duration-150 relative z-30
-                                    ${item.type === "separator" ? "text-[#721011] text-3xl md:text-5xl font-medium tracking-widest pointer-events-none" : "hover:text-deepRed/80"}
-                                    ${item.type === "solid" ? "text-[#721011]" : ""}
-                                `}
-                                style={item.type === "hollow" ? { WebkitTextStroke: "2px #721011", color: "transparent" } : {}}
+                {words.map((row, rIdx) => {
+                    // Determine animation direction: odd rows (0,2) go right to left, even row (1) goes left to right
+                    const isRightToLeft = rIdx % 2 === 0;
+                    
+                    // Create scroll-based transforms for each row
+                    const xTransform = useTransform(
+                        scrollYProgress,
+                        [0, 1],
+                        isRightToLeft ? [0, -400] : [0, 400]
+                    );
+                    
+                    return (
+                        <div key={rIdx} className="relative w-full overflow-hidden">
+                            <motion.div 
+                                className="flex flex-row items-center justify-center gap-6 md:gap-12 w-max whitespace-nowrap px-4"
+                                style={{ x: xTransform }}
                             >
-                                {item.text}
-                            </span>
-                        ))}
-                    </div>
-                ))}
+                                {/* Duplicate the content multiple times for seamless scrolling */}
+                                {Array.from({ length: 6 }).map((_, dupIdx) => (
+                                    <div key={dupIdx} className="flex flex-row items-center gap-6 md:gap-12">
+                                        {row.map((item, iIdx) => (
+                                            <span
+                                                key={`${dupIdx}-${iIdx}`}
+                                                onMouseEnter={() => item.img && setHoveredImage(item.img)}
+                                                onMouseLeave={() => setHoveredImage(null)}
+                                                className={`
+                                                    font-heading font-black text-[3rem] md:text-6xl lg:text-[7rem] cursor-crosshair transition-transform hover:scale-[1.03] duration-150 relative z-30
+                                                    ${item.type === "separator" ? "text-[#721011] text-3xl md:text-5xl font-medium tracking-widest pointer-events-none" : "hover:text-deepRed/80"}
+                                                    ${item.type === "solid" ? "text-[#721011]" : ""}
+                                                `}
+                                                style={item.type === "hollow" ? { WebkitTextStroke: "2px #721011", color: "transparent" } : {}}
+                                            >
+                                                {item.text}
+                                            </span>
+                                        ))}
+                                    </div>
+                                ))}
+                            </motion.div>
+                        </div>
+                    );
+                })}
             </div>
 
             {/* Hover Oval Image */}
