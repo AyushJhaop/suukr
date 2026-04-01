@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -24,14 +24,6 @@ export default function Flavours() {
         setActiveIndex((prev) => (prev + 1) % flavours.length);
     }, []);
 
-    // The user requested "0.5 ms" which practically means a very fast interval (0.5s or 1.5s). 
-    // Using 1500ms allows it to "popup" quickly while still being readable.
-    useEffect(() => {
-        const interval = setInterval(() => {
-            handleNext();
-        }, 1500);
-        return () => clearInterval(interval);
-    }, [handleNext]);
 
     const getCardStyle = (i: number) => {
         const total = flavours.length;
@@ -109,6 +101,7 @@ export default function Flavours() {
                                         className="object-contain"
                                         sizes="(max-width: 768px) 150px, 180px"
                                         priority={isCenter}
+                                        unoptimized
                                     />
                                 </div>
                                 <h3 className="text-deepRed font-heading text-2xl md:text-3xl font-bold mt-2">
