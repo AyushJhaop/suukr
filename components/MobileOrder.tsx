@@ -50,6 +50,7 @@ export default function MobileOrder() {
                             <Image
                                 src="/images/iphone_mockup2.png"
                                 fill
+                                sizes="(max-width: 1024px) 100vw, 600px"
                                 className="object-contain scale-x-[-1]"
                                 alt="Suukr App Mockup"
                                 priority

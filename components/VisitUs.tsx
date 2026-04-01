@@ -40,6 +40,7 @@ export default function VisitUs() {
                     <Image
                         src="/images/map_image.png"
                         fill
+                        sizes="(max-width: 1024px) 100vw, 600px"
                         className="object-cover"
                         alt="Suükr Location Map"
                         priority
