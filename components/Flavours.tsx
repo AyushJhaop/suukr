@@ -196,7 +196,7 @@ export default function Flavours() {
                     </div>
 
                     {/* Hero Visual (Right - 40%) */}
-                    <div className="w-2/5 relative flex items-center justify-start overflow-visible" style={{ transform: 'translateX(-78.3%)' }}>
+                    <div className="w-2/5 relative flex items-center justify-start overflow-visible" style={{ transform: 'translateX(-78.3%)'}}>
                         <motion.div 
                             key={activeFlavor.image}
                             className="relative"
