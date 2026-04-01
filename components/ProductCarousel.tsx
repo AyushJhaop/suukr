@@ -136,7 +136,9 @@ export default function ProductCarousel() {
                             }}
                             transition={{ type: "spring", stiffness: 220, damping: 28 }}
                             onClick={() => setActiveIndex(index)}
-                            className="absolute w-63 h-95 md:w-83 md:h-123 rounded-4xl overflow-hidden cursor-pointer shadow-xl"
+                            className={`absolute w-63 h-95 md:w-83 md:h-123 rounded-4xl overflow-hidden cursor-pointer transition-shadow duration-300
+                                ${cfg.isCenter ? "shadow-2xl ring-2 ring-white/40" : "shadow-lg"}
+                            `}
                             style={{ willChange: "transform, opacity" }}
                         >
                             {/* Photo */}
@@ -149,22 +151,46 @@ export default function ProductCarousel() {
                                 priority={cfg.isCenter}
                             />
 
+                            {/* Subtle dark gradient for depth */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-[1]" />
+
                             {/* Tag badge */}
                             {product.tag && (
-                                <div className="absolute top-4 left-4 z-10 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-3 py-1">
-                                    <span className="text-white text-xs font-semibold tracking-wide">{product.tag}</span>
+                                <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 overflow-hidden rounded-full shadow-lg">
+                                    {/* Glass base */}
+                                    <div className="absolute inset-0 bg-white/8 backdrop-blur-2xl border border-white/25 rounded-full" />
+                                    {/* Top shine */}
+                                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                                    {/* Shimmer gradient */}
+                                    <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent rounded-full" />
+                                    
+                                    <div className="relative px-3 py-1 flex items-center gap-1.5">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-gold shadow-sm animate-pulse" />
+                                        <span className="text-white text-[11px] font-semibold tracking-widest uppercase drop-shadow-sm">{product.tag}</span>
+                                    </div>
                                 </div>
                             )}
 
                             {/* Glass morphism description overlay */}
-                            <div className="absolute inset-x-0 bottom-0 z-10 m-3 rounded-2xl overflow-hidden">
-                                <div className="bg-white/20 backdrop-blur-md border border-white/30 px-4 py-3">
-                                    <h3 className="text-white font-heading text-lg md:text-xl font-semibold leading-tight">
-                                        {product.name}
-                                    </h3>
-                                    <p className="text-white/80 font-body text-xs mt-1 leading-snug">
-                                        {product.description}
-                                    </p>
+                            <div className="absolute inset-x-0 bottom-0 z-10 p-3">
+                                <div className="relative overflow-hidden rounded-2xl shadow-lg border-2 border-white/30">
+                                    {/* Glass base */}
+                                    <div className="absolute inset-0 bg-white/8 backdrop-blur-2xl rounded-2xl" />
+                                    {/* Gradient border overlay */}
+                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-2xl -z-10" />
+                                    {/* Top shine */}
+                                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                                    {/* Shimmer gradient */}
+                                    <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent rounded-2xl" />
+                                    
+                                    <div className="relative px-4 py-3.5">
+                                        <h3 className="text-white font-heading text-lg md:text-xl font-semibold leading-tight drop-shadow-sm">
+                                            {product.name}
+                                        </h3>
+                                        <p className="text-white/80 font-body text-xs mt-1 leading-snug tracking-wide drop-shadow-sm">
+                                            {product.description}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
@@ -190,7 +216,7 @@ export default function ProductCarousel() {
             </div>
 
             {/* Dot indicators */}
-            <div className="flex gap-2 mt-6 z-20">
+            <div className="flex gap-2 mt-8 z-20 items-center">
                 {products.map((_, i) => (
                     <button
                         key={i}
@@ -198,8 +224,8 @@ export default function ProductCarousel() {
                         aria-label={`Go to slide ${i + 1}`}
                         className={`rounded-full transition-all duration-300 ${
                             i === activeIndex
-                                ? "w-6 h-2.5 bg-deepRed"
-                                : "w-2.5 h-2.5 bg-deepRed/30"
+                                ? "w-7 h-2 bg-deepRed shadow-sm"
+                                : "w-2 h-2 bg-deepRed/20 hover:bg-deepRed/50"
                         }`}
                     />
                 ))}
