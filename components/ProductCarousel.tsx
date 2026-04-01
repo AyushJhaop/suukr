@@ -59,7 +59,11 @@ export default function ProductCarousel() {
     };
 
     return (
-        <section className="pb-24 pt-4 bg-whiteOff relative flex flex-col items-center w-full overflow-hidden">
+        <section id="best-sellers" className="pb-24 pt-4 bg-whiteOff relative flex flex-col items-center w-full overflow-hidden">
+            {/* Faint logo watermark background */}
+            <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[#721011]/5 font-heading font-bold text-[10rem] md:text-[14rem] tracking-widest select-none pointer-events-none z-0 whitespace-nowrap">
+                SUÜKR
+            </div>
             {/* Header section */}
             <div className="text-center mb-16 z-20 px-4 flex flex-col items-center">
                 <span className="inline-block text-[#D5AF34] text-xl font-bold tracking-widest mb-2 font-inter">

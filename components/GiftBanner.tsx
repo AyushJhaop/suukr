@@ -32,7 +32,7 @@ export default function GiftBanner() {
     }, []);
 
     return (
-        <section className="py-24 w-full bg-whiteOff flex items-center justify-center relative z-20">
+        <section id="e-gift" className="py-24 w-full bg-whiteOff flex items-center justify-center relative z-20">
             {/* The Ticket Banner */}
             <div
                 className="relative w-[95%] max-w-6xl h-[280px] md:h-[350px] shadow-2xl flex flex-row items-center justify-center md:justify-around px-8 md:px-32 overflow-hidden"
@@ -48,8 +48,11 @@ export default function GiftBanner() {
                 <div className="relative z-10 w-full flex flex-row items-center justify-between">
 
                     {/* Left Text */}
-                    <div className="text-whiteOff font-heading font-bold text-4xl md:text-6xl leading-snug md:leading-tight text-center md:text-center w-full md:w-1/2 mb-0">
-                        Give The Gift<br />Of<br />Suükr
+                    <div className="text-whiteOff font-heading font-bold text-4xl md:text-6xl leading-snug md:leading-tight text-center md:text-center w-full md:w-1/2 mb-0 flex flex-col items-center gap-2">
+                        <span>Give The Gift</span>
+                        <span>Of</span>
+                        {/* Logo mark instead of plain text */}
+                        <span className="text-[#D5AF34] tracking-widest">SUÜKR</span>
                     </div>
 
                     {/* Right Circle Button */}

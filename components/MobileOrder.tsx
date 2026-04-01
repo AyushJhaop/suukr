@@ -25,6 +25,11 @@ export default function MobileOrder() {
             {/* Main Red Card Container */}
             <div className="relative w-[90%] max-w-6xl mx-auto rounded-[2rem] md:rounded-[3rem] bg-[#721011] mt-16 py-16 px-8 md:px-16 flex flex-col md:flex-row items-center border border-[#721011]/5 shadow-2xl">
 
+                {/* Logo watermark top-right */}
+                <div className="absolute top-6 right-8 text-[#D5AF34]/30 font-heading font-bold text-2xl tracking-widest select-none pointer-events-none z-10">
+                    SUÜKR
+                </div>
+
                 {/* Left Side: Mockup (Extends Outward) */}
                 <div className="w-full md:w-1/2 relative flex items-center h-[300px] md:h-[450px]">
                     <div className="absolute left-1/2 md:left-auto md:-left-[25%] lg:-left-[35%] top-1/2 transform -translate-x-1/2 md:translate-x-0 -translate-y-1/2 w-[140%] h-[160%] z-10 pointer-events-none">

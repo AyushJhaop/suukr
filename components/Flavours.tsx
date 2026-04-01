@@ -52,7 +52,7 @@ export default function Flavours() {
     };
 
     return (
-        <section className="relative -mt-32 pt-24 pb-32 w-full overflow-hidden flex flex-col items-center bg-[#FFDEDE] z-10">
+        <section id="menu" className="relative -mt-32 pt-24 pb-32 w-full overflow-hidden flex flex-col items-center bg-[#FFDEDE] z-10">
             {/* Background curvy hourglass decoration formed by top and bottom whiteOff curves */}
             <div className="absolute inset-0 z-0 pointer-events-none w-full h-full flex items-start justify-center overflow-hidden">
                 <svg viewBox="0 0 1440 1000" preserveAspectRatio="none" className="absolute w-full h-full">

@@ -87,7 +87,7 @@ const categories = [
 
 export default function Categories() {
     return (
-        <section className="w-full bg-[#FFDEDE] border-t border-deepRed/10">
+        <section id="shop-merch" className="w-full bg-[#FFDEDE] border-t border-deepRed/10">
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                 {categories.map((category, idx) => (
                     <div

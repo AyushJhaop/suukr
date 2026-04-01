@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function VisitUs() {
     return (
-        <section className="relative py-24 w-full bg-[#FEF2F2] flex flex-col items-center overflow-hidden z-10">
+        <section id="contact-us" className="relative py-24 w-full bg-[#FEF2F2] flex flex-col items-center overflow-hidden z-10">
             {/* Background elegant curve decoration */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
                 <svg viewBox="0 0 1440 800" preserveAspectRatio="none" className="w-full h-full opacity-70">
@@ -51,6 +51,11 @@ export default function VisitUs() {
 
                     {/* The Info Card */}
                     <div className="w-full bg-white rounded-2xl shadow-xl p-8 md:p-10 flex flex-col border border-black/5">
+
+                        {/* Brand mark */}
+                        <div className="text-[#D5AF34] font-heading font-bold text-xl tracking-widest mb-6 opacity-80">
+                            SUÜKR
+                        </div>
 
                         <div className="mb-6">
                             <h4 className="text-deepRed font-heading font-bold text-lg md:text-xl mb-4">Opening Hours</h4>
