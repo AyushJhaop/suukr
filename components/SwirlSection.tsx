@@ -68,7 +68,7 @@ export default function SwirlSection() {
             </div>
 
             {/* Text Grid */}
-            <div className="relative z-10 flex flex-col items-center justify-center gap-6 md:gap-10 w-full max-w-[100vw] overflow-hidden py-10 md:py-20 lg:py-24">
+            <div className="relative z-10 flex flex-col items-center justify-center gap-4 sm:gap-6 md:gap-10 w-full max-w-[100vw] overflow-hidden py-8 sm:py-10 md:py-20 lg:py-24">
                 {words.map((row, rIdx) => {
                     // Determine animation direction: odd rows (0,2) go right to left, even row (1) goes left to right
                     const isRightToLeft = rIdx % 2 === 0;
@@ -83,18 +83,18 @@ export default function SwirlSection() {
                     return (
                         <div key={rIdx} className="relative w-full overflow-hidden">
                             <motion.div 
-                                className="flex flex-row items-center justify-center gap-6 md:gap-12 w-max whitespace-nowrap px-4"
+                                className="flex flex-row items-center justify-center gap-3 sm:gap-6 md:gap-12 w-max whitespace-nowrap px-2 sm:px-4"
                                 style={{ x: xTransform }}
                             >
                                 {/* Duplicate the content multiple times for seamless scrolling */}
                                 {Array.from({ length: 6 }).map((_, dupIdx) => (
-                                    <div key={dupIdx} className="flex flex-row items-center gap-6 md:gap-12">
+                                    <div key={dupIdx} className="flex flex-row items-center gap-3 sm:gap-6 md:gap-12">
                                         {row.map((item, iIdx) => (
                                             <span
                                                 key={`${dupIdx}-${iIdx}`}
                                                 className={`
-                                                    font-heading font-black text-[3rem] md:text-6xl lg:text-[7rem] cursor-crosshair transition-transform hover:scale-[1.03] duration-150 relative z-30
-                                                    ${item.type === "separator" ? "text-[#721011] text-3xl md:text-5xl font-medium tracking-widest pointer-events-none" : "hover:text-deepRed/80"}
+                                                    font-heading font-black text-[2rem] sm:text-[3rem] md:text-6xl lg:text-[7rem] cursor-crosshair transition-transform hover:scale-[1.03] duration-150 relative z-30
+                                                    ${item.type === "separator" ? "text-[#721011] text-xl sm:text-3xl md:text-5xl font-medium tracking-widest pointer-events-none" : "hover:text-deepRed/80"}
                                                     ${item.type === "solid" ? "text-[#721011]" : ""}
                                                 `}
                                                 style={item.type === "hollow" ? { WebkitTextStroke: "2px #721011", color: "transparent" } : {}}
@@ -112,7 +112,7 @@ export default function SwirlSection() {
 
             {/* Auto-switching Oval Image */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20">
-                <div className="w-[250px] h-[320px] md:w-[300px] md:h-[350px] rounded-full overflow-hidden shadow-2xl relative">
+                <div className="w-[180px] h-[240px] sm:w-[250px] sm:h-[320px] md:w-[300px] md:h-[350px] rounded-full overflow-hidden shadow-2xl relative">
                     <AnimatePresence>
                         <motion.div
                             key={currentAutoImage}
@@ -128,6 +128,8 @@ export default function SwirlSection() {
                                 className="object-cover scale-110"
                                 alt="Froyo Flavor"
                                 priority
+                                sizes="(max-width: 640px) 180px, (max-width: 768px) 250px, 300px"
+                                unoptimized
                             />
                         </motion.div>
                     </AnimatePresence>

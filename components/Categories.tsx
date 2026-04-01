@@ -97,10 +97,11 @@ export default function Categories() {
                 {categories.map((category, idx) => (
                     <div
                         key={idx}
-                        className={`relative flex flex-col items-center justify-center py-16 px-6 cursor-pointer group
+                        className={`relative flex flex-col items-center justify-center py-12 sm:py-16 px-4 sm:px-6 cursor-pointer group min-h-[200px] sm:min-h-[250px]
                         ${idx < 3 ? 'lg:border-r lg:border-deepRed/20' : ''} 
                         ${(idx === 0 || idx === 1) ? 'sm:border-b lg:border-b-0 sm:border-deepRed/20' : ''}
-                        ${(idx % 2 === 0) ? 'sm:border-r sm:border-deepRed/20' : ''}
+                        ${(idx % 2 === 0) ? 'sm:border-r sm:border-deepRed/20 lg:border-r-0' : ''}
+                        ${idx === 2 ? 'lg:border-r lg:border-deepRed/20' : ''}
                         `}
                         onMouseEnter={() => setHoveredCategory(idx)}
                         onMouseLeave={() => setHoveredCategory(null)}
@@ -111,9 +112,12 @@ export default function Categories() {
                         <div className="relative z-10 text-deepRed transform transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-2">
                             {category.icon}
                         </div>
-                        <h3 className="relative z-10 text-deepRed font-heading font-bold text-2xl md:text-3xl text-center leading-tight tracking-wide max-w-[220px] transition-colors duration-300 group-hover:text-deepRed/80">
+                        <h3 className="relative z-10 text-deepRed font-heading font-bold text-xl sm:text-2xl md:text-3xl text-center leading-tight tracking-wide max-w-[200px] sm:max-w-[220px] transition-colors duration-300 group-hover:text-deepRed/80">
                             {category.title === "Self-Serve Frozen Yoghurt" ? (
-                                <>Self-Serve<br />Frozen Yoghurt</>
+                                <>
+                                    <span className="block sm:hidden">Self-Serve Frozen Yoghurt</span>
+                                    <span className="hidden sm:block">Self-Serve<br />Frozen Yoghurt</span>
+                                </>
                             ) : category.title}
                         </h3>
                     </div>

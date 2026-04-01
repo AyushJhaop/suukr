@@ -32,10 +32,10 @@ export default function GiftBanner() {
     }, []);
 
     return (
-        <section id="e-gift" className="py-12 w-full bg-whiteOff flex items-center justify-center relative z-20">
+        <section id="e-gift" className="py-8 sm:py-12 w-full bg-whiteOff flex items-center justify-center relative z-20">
             {/* The Gift Ticket Banner */}
             <div
-                className="relative w-[98%] max-w-7xl h-[200px] md:h-[240px] shadow-2xl flex flex-col md:flex-row items-center justify-between px-16 md:px-32 overflow-hidden"
+                className="relative w-[96%] sm:w-[98%] max-w-7xl h-[160px] sm:h-[200px] md:h-[240px] shadow-2xl flex flex-col md:flex-row items-center justify-between px-8 sm:px-16 md:px-32 overflow-hidden"
                 style={{ clipPath }}
             >
                 {/* Background Color */}
@@ -47,19 +47,19 @@ export default function GiftBanner() {
                 ></div>
 
                 {/* Content Container with Golden Ratio spacing */}
-                <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-8">
 
                     {/* Left Typography Section */}
                     <div className="text-white w-full md:w-3/5 flex flex-col items-center md:items-start">
                         <div className="text-center md:text-left">
                             {/* Main Headline - Rounded Sans-Serif */}
-                            <h2 className="font-sans font-bold text-2xl md:text-4xl leading-[1.1] mb-1">
+                            <h2 className="font-sans font-bold text-xl sm:text-2xl md:text-4xl leading-[1.1] mb-1">
                                 <span className="block">Give The Gift</span>
-                                <span className="block ml-[25%] text-lg md:text-3xl font-medium my-1">Of</span>
+                                <span className="block ml-[15%] sm:ml-[25%] text-base sm:text-lg md:text-3xl font-medium my-1">Of</span>
                             </h2>
                             
                             {/* Brand Logo - Using consistent logo font styling */}
-                            <div className="text-[#FFD97D] text-3xl md:text-5xl font-heading font-bold tracking-widest uppercase mt-2">
+                            <div className="text-[#FFD97D] text-2xl sm:text-3xl md:text-5xl font-heading font-bold tracking-widest uppercase mt-2">
                                 SUÜKR
                             </div>
                         </div>
@@ -68,13 +68,13 @@ export default function GiftBanner() {
                     {/* Right CTA Section - Golden Ratio spacing */}
                     <div className="w-full md:w-2/5 flex justify-center md:justify-end">
                         <button 
-                            className="group w-[140px] h-[140px] md:w-[180px] md:h-[180px] bg-[#ffd676] rounded-full flex flex-col items-center justify-center text-white font-sans transition-all duration-300 ease-out hover:scale-105 hover:shadow-[0_10px_20px_rgba(0,0,0,0.2)] active:scale-95 cursor-pointer shadow-lg"
+                            className="group w-[100px] h-[100px] sm:w-[140px] sm:h-[140px] md:w-[180px] md:h-[180px] bg-[#ffd676] rounded-full flex flex-col items-center justify-center text-white font-sans transition-all duration-300 ease-out hover:scale-105 hover:shadow-[0_10px_20px_rgba(0,0,0,0.2)] active:scale-95 cursor-pointer shadow-lg min-w-[44px] min-h-[44px]"
                             aria-label="Purchase E-Gift Card"
                         >
-                            <span className="text-lg md:text-xl font-bold group-hover:text-[#721011] transition-colors duration-300">
+                            <span className="text-sm sm:text-lg md:text-xl font-bold group-hover:text-[#721011] transition-colors duration-300">
                                 Tap Here
                             </span>
-                            <span className="text-sm md:text-base font-normal mt-1 group-hover:text-[#721011] transition-colors duration-300">
+                            <span className="text-xs sm:text-sm md:text-base font-normal mt-1 group-hover:text-[#721011] transition-colors duration-300">
                                 for E-Gift
                             </span>
                         </button>

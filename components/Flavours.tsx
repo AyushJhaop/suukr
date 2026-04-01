@@ -57,16 +57,16 @@ export default function Flavours() {
     return (
         <section 
             id="flavors" 
-            className="relative py-16 px-4 lg:px-8 w-full overflow-hidden bg-whiteOff"
+            className="relative py-12 sm:py-16 px-4 lg:px-8 w-full overflow-hidden bg-whiteOff"
         >
             {/* Main Card Container */}
             <div 
-                className="relative max-w-6xl mx-auto overflow-hidden shadow-2xl transition-all duration-500 ease-in-out"
+                className="relative max-w-6xl mx-auto overflow-hidden shadow-2xl transition-all duration-500 ease-in-out rounded-2xl sm:rounded-3xl"
                 style={{ backgroundColor: activeFlavor.accentColor }}
             >
-                {/* Diagonal Background Split */}
+                {/* Diagonal Background Split - Hidden on mobile, simplified on tablet */}
                 <motion.div 
-                    className="absolute inset-0 bg-white z-0"
+                    className="absolute inset-0 bg-white z-0 hidden lg:block"
                     style={{
                         clipPath: "polygon(0 0, 87% 0, 47% 100%, 0 100%)"
                     }}
@@ -75,11 +75,14 @@ export default function Flavours() {
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                 />
 
-                <div className="relative z-10 h-[500px] lg:h-[600px] flex">
-                    {/* Content Area (Left - 60%) */}
-                    <div className="w-3/5 flex flex-col justify-start pt-40 px-6 lg:px-12 py-8" style={{ transform: 'translateX(7%)' }}>
-                        {/* Vertical Label */}
-                        <div className="mb-6">
+                {/* Mobile/Tablet Background */}
+                <div className="absolute inset-0 bg-white/90 z-0 lg:hidden" />
+
+                <div className="relative z-10 min-h-[500px] sm:min-h-[600px] lg:h-[600px] flex flex-col lg:flex-row">
+                    {/* Content Area */}
+                    <div className="w-full lg:w-3/5 flex flex-col justify-center px-6 sm:px-8 lg:px-12 py-8 lg:py-16 text-center lg:text-left lg:transform lg:translateX-[7%]">
+                        {/* Vertical Label - Hidden on mobile */}
+                        <div className="mb-4 lg:mb-6 hidden lg:block">
                             <motion.div 
                                 className="text-xs font-body tracking-[0.3em] text-gray-600 uppercase transform -rotate-90 origin-left w-fit"
                                 initial={false}
@@ -90,12 +93,19 @@ export default function Flavours() {
                             </motion.div>
                         </div>
 
+                        {/* Mobile Label */}
+                        <div className="mb-4 lg:hidden">
+                            <span className="text-xs font-body tracking-[0.3em] text-gray-600 uppercase">
+                                FLAVORS
+                            </span>
+                        </div>
+
                         {/* Main Content */}
-                        <div className="max-w-md space-y-6">
+                        <div className="max-w-md mx-auto lg:mx-0 space-y-4 sm:space-y-6">
                             {/* Dynamic Heading */}
                             <motion.h1 
                                 key={activeFlavor.name}
-                                className="font-heading text-3xl lg:text-4xl xl:text-5xl font-bold text-deepRed leading-tight"
+                                className="font-heading text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-deepRed leading-tight"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -106,7 +116,7 @@ export default function Flavours() {
                             {/* Dynamic Description */}
                             <motion.p 
                                 key={activeFlavor.description}
-                                className="font-body text-sm lg:text-base text-gray-700 leading-relaxed"
+                                className="font-body text-sm sm:text-base text-gray-700 leading-relaxed"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, ease: "easeInOut", delay: 0.1 }}
@@ -118,7 +128,7 @@ export default function Flavours() {
                             <motion.button 
                                 key={activeFlavor.ctaText}
                                 onClick={handleOrderClick}
-                                className="relative font-body text-sm lg:text-base font-medium px-6 py-3 cursor-pointer border-2 overflow-hidden"
+                                className="relative font-body text-sm sm:text-base font-medium px-6 py-3 cursor-pointer border-2 overflow-hidden min-h-[44px] w-full sm:w-auto"
                                 style={{
                                     borderColor: '#721011',
                                     color: '#721011'
@@ -144,13 +154,13 @@ export default function Flavours() {
                             </motion.button>
                         </div>
 
-                        {/* Selection Bar (Bottom Left) */}
-                        <div className="absolute bottom-10 left-6 lg:left-13 flex space-x-5" style={{ zIndex: 10 }}>
+                        {/* Selection Bar */}
+                        <div className="flex justify-center lg:justify-start space-x-3 sm:space-x-5 mt-8 lg:mt-12 lg:absolute lg:bottom-10 lg:left-6 lg:right-auto" style={{ zIndex: 10 }}>
                             {flavorStates.map((flavor, index) => (
                                 <motion.button
                                     key={flavor.id}
                                     onClick={() => setActiveFlavorIndex(index)}
-                                    className="relative w-12 h-12 lg:w-16 lg:h-16 rounded-full overflow-hidden cursor-pointer"
+                                    className="relative w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full overflow-hidden cursor-pointer min-w-[44px] min-h-[44px]"
                                     style={{
                                         borderWidth: '2px',
                                         borderStyle: 'solid',
@@ -178,7 +188,7 @@ export default function Flavours() {
                                         alt={flavor.name}
                                         fill
                                         className="object-cover"
-                                        sizes="64px"
+                                        sizes="(max-width: 640px) 40px, (max-width: 1024px) 48px, 64px"
                                         unoptimized
                                     />
                                     {index === activeFlavorIndex && (
@@ -195,19 +205,12 @@ export default function Flavours() {
                         </div>
                     </div>
 
-                    {/* Hero Visual (Right - 40%) */}
-                    <div className="w-2/5 relative flex items-center justify-start overflow-visible" style={{ transform: 'translateX(-78.3%)'}}>
+                    {/* Hero Visual */}
+                    <div className="w-full lg:w-2/5 relative flex items-center justify-center overflow-hidden order-first lg:order-last h-[300px] sm:h-[400px] lg:h-full lg:transform lg:translateX-[-78.3%]">
                         <motion.div 
                             key={activeFlavor.image}
-                            className="relative"
-                            style={{ 
-                                width: '300%', 
-                                height: '300%',
-                                minWidth: '850px',
-                                minHeight: '850px',
-                                transform: 'translateX(-60%)',
-                                zIndex: 1
-                            }}
+                            className="relative w-full h-full lg:w-[300%] lg:h-[300%] lg:min-w-[850px] lg:min-h-[850px] lg:transform lg:translateX-[-60%]"
+                            style={{ zIndex: 1 }}
                             initial={{ opacity: 0, scale: 0.8, x: 50 }}
                             animate={{ opacity: 1, scale: 1, x: 0 }}
                             transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -217,7 +220,7 @@ export default function Flavours() {
                                 alt={activeFlavor.name}
                                 fill
                                 className="object-contain drop-shadow-3xl"
-                                sizes="(max-width: 768px) 90vw, 40vw"
+                                sizes="(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 40vw"
                                 priority
                                 unoptimized
                             />
@@ -226,7 +229,7 @@ export default function Flavours() {
                 </div>
 
                 {/* Social Footer (Bottom Right) */}
-                <div className="absolute bottom-6 right-6 lg:right-12 flex items-center space-x-4">
+                <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 lg:right-12 flex items-center space-x-4">
                     
                     {/* Scroll Indicator */}
                     <div className="flex space-x-1">
