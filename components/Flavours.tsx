@@ -1,120 +1,245 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
-type Flavour = {
+type FlavorState = {
     id: number;
     name: string;
-    desc: string;
+    description: string;
+    ctaText: string;
+    accentColor: string;
     image: string;
+    vibe: 'light' | 'vibrant' | 'rich';
 };
 
-const flavours: Flavour[] = [
-    { id: 1, name: "Mango", desc: "Perfect for summer", image: "/images/mango_froyo.png" },
-    { id: 2, name: "Classic Vanilla", desc: "Light and heavenly", image: "/images/vanilla_froyo.png" },
-    { id: 3, name: "Strawberry", desc: "Seasonal favorite", image: "/images/strawberry_froyo.png" }
+const flavorStates: FlavorState[] = [
+    {
+        id: 0,
+        name: "Summer Strawberry",
+        description: "A gentle blush of sun-ripened berries swirled into velvet cream. It's the taste of a quiet June afternoon—light, airy, and effortlessly sweet.",
+        ctaText: "Savor the Blush — Order Now",
+        accentColor: "#FDE2E4",
+        image: "/images/strawberry_froyo.png",
+        vibe: 'light'
+    },
+    {
+        id: 1,
+        name: "Alphonso Gold",
+        description: "Intense, sun-drenched nectar captured in a frozen dance. A vibrant burst of tropical soul that lingers like a warm coastal breeze on your palate.",
+        ctaText: "Capture the Sun — Order Now",
+        accentColor: "#FFD97D",
+        image: "/images/mango_froyo.png",
+        vibe: 'vibrant'
+    },
+    {
+        id: 2,
+        name: "Madagascar Velvet",
+        description: "Beyond simple; it is the fundamental art of flavor. Rich, aromatic bean flecks folded into a dense, luxurious cloud of pure indulgence.",
+        ctaText: "Taste the Purity — Order Now",
+        accentColor: "#EAD7BB",
+        image: "/images/vanilla_froyo.png",
+        vibe: 'rich'
+    }
 ];
 
 export default function Flavours() {
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeFlavorIndex, setActiveFlavorIndex] = useState(0);
+    const activeFlavor = flavorStates[activeFlavorIndex];
 
-    const handleNext = useCallback(() => {
-        setActiveIndex((prev) => (prev + 1) % flavours.length);
-    }, []);
-
-
-    const getCardStyle = (i: number) => {
-        const total = flavours.length;
-        let distance = ((i - activeIndex) % total + total) % total;
-        if (distance > Math.floor(total / 2)) {
-            distance -= total;
-        }
-
-        const isCenter = distance === 0;
-        const baseGap = typeof window !== 'undefined' && window.innerWidth < 768 ? 250 : 380;
-
-        return {
-            x: distance * baseGap,
-            scale: isCenter ? 1 : 0.65,
-            opacity: 1,
-            zIndex: 10 - Math.abs(distance),
-        };
+    const handleOrderClick = () => {
+        // Add your order functionality here
+        console.log(`Ordering ${activeFlavor.name}`);
+        // You can redirect to order page, open modal, etc.
     };
 
     return (
-        <section id="menu" className="relative -mt-32 pt-24 pb-32 w-full overflow-hidden flex flex-col items-center bg-[#FFDEDE] z-10">
-            {/* Background curvy hourglass decoration formed by top and bottom whiteOff curves */}
-            <div className="absolute inset-0 z-0 pointer-events-none w-full h-full flex items-start justify-center overflow-hidden">
-                <svg viewBox="0 0 1440 1000" preserveAspectRatio="none" className="absolute w-full h-full">
-                    {/* Even thinner deep white curves */}
-                    <path d="M 0,0 Q 720,410 1440,0 Z" className="fill-whiteOff" />
-                    {/* Bottom White Curve */}
-                    <path d="M 0,1000 Q 720,590 1440,1000 Z" className="fill-whiteOff" />
-                </svg>
-            </div>
+        <section 
+            id="flavors" 
+            className="relative py-16 px-4 lg:px-8 w-full overflow-hidden bg-whiteOff"
+        >
+            {/* Main Card Container */}
+            <div 
+                className="relative max-w-6xl mx-auto overflow-hidden shadow-2xl transition-all duration-500 ease-in-out"
+                style={{ backgroundColor: activeFlavor.accentColor }}
+            >
+                {/* Diagonal Background Split */}
+                <motion.div 
+                    className="absolute inset-0 bg-white z-0"
+                    style={{
+                        clipPath: "polygon(0 0, 87% 0, 47% 100%, 0 100%)"
+                    }}
+                    initial={false}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                />
 
-            {/* Header section - shifted to sit between the sections */}
-            <div className="text-center mb-10 z-30 px-4 flex flex-col items-center relative">
-                <h2 className="font-heading text-4xl md:text-5xl lg:text-5xl text-deepRed font-bold uppercase tracking-wide">
-                    Our Flavours
-                </h2>
-                {/* Small curvy thing below the title */}
-                <div className="mt-2 text-[#D5AF34]">
-                    <svg width="280" height="24" viewBox="0 0 280 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-[280px]">
-                        <path d="M2.5 13.5C28.5 6.5 76 2.5 140 10.5C204 18.5 252.5 11.5 277 5.5" stroke="#D5AF34" strokeWidth="3" strokeLinecap="round" />
-                        <path d="M120 20C135 18 165 18 185 20" stroke="#D5AF34" strokeWidth="3" strokeLinecap="round" />
-                    </svg>
-                </div>
-            </div>
-
-            {/* Flavours Carousel */}
-            <div className="relative w-full h-[450px] flex items-center justify-center mt-0 z-20">
-                <AnimatePresence initial={false}>
-                    {flavours.map((f, index) => {
-                        const style = getCardStyle(index);
-                        const isCenter = index === activeIndex;
-
-                        return (
-                            <motion.div
-                                key={f.id}
-                                animate={{
-                                    x: style.x,
-                                    scale: style.scale,
-                                    zIndex: style.zIndex,
-                                }}
-                                transition={{
-                                    type: "spring",
-                                    stiffness: 250,
-                                    damping: 30,
-                                    mass: 1,
-                                }}
-                                onClick={() => setActiveIndex(index)}
-                                className="absolute w-[320px] h-[320px] md:w-[400px] md:h-[400px] rounded-full bg-white border border-gray-200 drop-shadow-sm flex flex-col items-center justify-center p-6 cursor-pointer"
+                <div className="relative z-10 h-[500px] lg:h-[600px] flex">
+                    {/* Content Area (Left - 60%) */}
+                    <div className="w-3/5 flex flex-col justify-start pt-40 px-6 lg:px-12 py-8" style={{ transform: 'translateX(7%)' }}>
+                        {/* Vertical Label */}
+                        <div className="mb-6">
+                            <motion.div 
+                                className="text-xs font-body tracking-[0.3em] text-gray-600 uppercase transform -rotate-90 origin-left w-fit"
+                                initial={false}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.5, ease: "easeInOut", delay: 0.1 }}
                             >
-                                <div className="relative w-[150px] h-[150px] md:w-[180px] md:h-[180px] mb-2 drop-shadow-md">
+                                FLAVORS
+                            </motion.div>
+                        </div>
+
+                        {/* Main Content */}
+                        <div className="max-w-md space-y-6">
+                            {/* Dynamic Heading */}
+                            <motion.h1 
+                                key={activeFlavor.name}
+                                className="font-heading text-3xl lg:text-4xl xl:text-5xl font-bold text-deepRed leading-tight"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, ease: "easeInOut" }}
+                            >
+                                {activeFlavor.name}
+                            </motion.h1>
+
+                            {/* Dynamic Description */}
+                            <motion.p 
+                                key={activeFlavor.description}
+                                className="font-body text-sm lg:text-base text-gray-700 leading-relaxed"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, ease: "easeInOut", delay: 0.1 }}
+                            >
+                                {activeFlavor.description}
+                            </motion.p>
+
+                            {/* CTA Button */}
+                            <motion.button 
+                                key={activeFlavor.ctaText}
+                                onClick={handleOrderClick}
+                                className="relative font-body text-sm lg:text-base font-medium px-6 py-3 cursor-pointer border-2 overflow-hidden"
+                                style={{
+                                    borderColor: '#721011',
+                                    color: '#721011'
+                                }}
+                                initial={{ 
+                                    opacity: 1, 
+                                    y: 20,
+                                    backgroundColor: 'transparent'
+                                }}
+                                whileHover={{ 
+                                    scale: 1.02,
+                                    backgroundColor: '#721011',
+                                    color: '#ffffff',
+                                    transition: { duration: 0.3, ease: "easeInOut" }
+                                }}
+                                whileTap={{ 
+                                    scale: 0.98,
+                                    transition: { duration: 0.1 }
+                                }}
+                                transition={{ duration: 0, ease: "easeInOut", delay: 0  }}
+                            >
+                                <span className="relative z-10">{activeFlavor.ctaText}</span>
+                            </motion.button>
+                        </div>
+
+                        {/* Selection Bar (Bottom Left) */}
+                        <div className="absolute bottom-10 left-6 lg:left-13 flex space-x-5">
+                            {flavorStates.map((flavor, index) => (
+                                <motion.button
+                                    key={flavor.id}
+                                    onClick={() => setActiveFlavorIndex(index)}
+                                    className="relative w-12 h-12 lg:w-16 lg:h-16 rounded-full overflow-hidden cursor-pointer"
+                                    style={{
+                                        borderWidth: '2px',
+                                        borderStyle: 'solid',
+                                        borderColor: index === activeFlavorIndex ? '#721011' : '#d1d5db'
+                                    }}
+                                    initial={{ scale: index === activeFlavorIndex ? 1.05 : 1 }}
+                                    animate={{ 
+                                        scale: index === activeFlavorIndex ? 1.05 : 1,
+                                        borderColor: index === activeFlavorIndex ? '#721011' : '#d1d5db'
+                                    }}
+                                    whileHover={{ 
+                                        scale: 1.1,
+                                        borderColor: '#721011',
+                                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                                        transition: { duration: 0.2 }
+                                    }}
+                                    whileTap={{ 
+                                        scale: 0.95,
+                                        transition: { duration: 0.1 }
+                                    }}
+                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                >
                                     <Image
-                                        src={f.image}
-                                        alt={f.name}
+                                        src={flavor.image}
+                                        alt={flavor.name}
                                         fill
-                                        className="object-contain"
-                                        sizes="(max-width: 768px) 150px, 180px"
-                                        priority={isCenter}
+                                        className="object-cover"
+                                        sizes="64px"
                                         unoptimized
                                     />
-                                </div>
-                                <h3 className="text-deepRed font-heading text-2xl md:text-3xl font-bold mt-2">
-                                    {f.name}
-                                </h3>
-                                <p className="text-[#D5AF34] font-body text-sm md:text-md mt-1 font-medium">
-                                    {f.desc}
-                                </p>
-                            </motion.div>
-                        );
-                    })}
-                </AnimatePresence>
+                                    {index === activeFlavorIndex && (
+                                        <motion.div 
+                                            className="absolute inset-0"
+                                            style={{ backgroundColor: 'rgba(114, 16, 17, 0.1)' }}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            transition={{ duration: 0.3 }}
+                                        />
+                                    )}
+                                </motion.button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Hero Visual (Right - 40%) */}
+                    <div className="w-2/5 relative flex items-center justify-start overflow-visible" style={{ transform: 'translateX(-92%)' }}>
+                        <motion.div 
+                            key={activeFlavor.image}
+                            className="relative"
+                            style={{ 
+                                width: '300%', 
+                                height: '300%',
+                                minWidth: '975px',
+                                minHeight: '975px',
+                                transform: 'translateX(-60%)'
+                            }}
+                            initial={{ opacity: 0, scale: 0.8, x: 50 }}
+                            animate={{ opacity: 1, scale: 1, x: 0 }}
+                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                        >
+                            <Image
+                                src={activeFlavor.image}
+                                alt={activeFlavor.name}
+                                fill
+                                className="object-contain drop-shadow-2xl"
+                                sizes="(max-width: 768px) 600px, 1000px"
+                                priority
+                                unoptimized
+                            />
+                        </motion.div>
+                    </div>
+                </div>
+
+                {/* Social Footer (Bottom Right) */}
+                <div className="absolute bottom-6 right-6 lg:right-12 flex items-center space-x-4">
+                    
+                    {/* Scroll Indicator */}
+                    <div className="flex space-x-1">
+                        {flavorStates.map((_, index) => (
+                            <div 
+                                key={index}
+                                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                    index === activeFlavorIndex ? 'bg-deepRed' : 'bg-gray-300'
+                                }`}
+                            />
+                        ))}
+                    </div>
+                </div>
             </div>
-        </section >
+        </section>
     );
 }
