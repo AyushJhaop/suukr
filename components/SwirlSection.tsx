@@ -45,7 +45,6 @@ export default function SwirlSection() {
             { text: "SWEET", type: "solid" },
             { text: "○", type: "separator" },
             { text: "SWIRL", type: "hollow" },
-            { text: "○", type: "separator" },
         ],
         [
             { text: "FUN", type: "solid" },
@@ -78,7 +77,7 @@ export default function SwirlSection() {
                     const xTransform = useTransform(
                         scrollYProgress,
                         [0, 1],
-                        isRightToLeft ? [0, -800] : [0, 800]
+                        isRightToLeft ? [0, -200] : [0, 200]
                     );
                     
                     return (
