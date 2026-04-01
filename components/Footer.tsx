@@ -137,22 +137,14 @@ export default function Footer() {
                         {/* Third Row: Birth Date & Postcode */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                             <div className="relative">
-                                <select
+                                <input
+                                    type="date"
                                     name="birthDate"
                                     value={formData.birthDate}
                                     onChange={handleInputChange}
-                                    className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-[#5a0d0d] border-2 border-[#FEF2F2]/20 rounded-full text-[#FEF2F2] font-medium text-sm sm:text-base focus:outline-none focus:border-[#D5AF34] transition-colors appearance-none cursor-pointer min-h-[44px]"
-                                >
-                                    <option value="" className="text-gray-800">dd/mm/yyyy</option>
-                                    <option value="01/01/1990" className="text-gray-800">01/01/1990</option>
-                                    <option value="01/01/1995" className="text-gray-800">01/01/1995</option>
-                                    <option value="01/01/2000" className="text-gray-800">01/01/2000</option>
-                                </select>
-                                <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 pointer-events-none">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#FEF2F2]/60">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </div>
+                                    className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-[#5a0d0d] border-2 border-[#FEF2F2]/20 rounded-full text-[#FEF2F2] font-medium text-sm sm:text-base focus:outline-none focus:border-[#D5AF34] transition-colors cursor-pointer min-h-[44px] [color-scheme:dark]"
+                                    placeholder="Date of Birth"
+                                />
                             </div>
                             <div className="relative">
                                 <input

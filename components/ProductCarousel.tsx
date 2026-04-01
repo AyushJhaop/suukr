@@ -119,8 +119,8 @@ export default function ProductCarousel() {
             id="best-sellers"
             className="pb-24 pt-4 bg-whiteOff relative flex flex-col items-center w-full overflow-hidden"
         >
-            {/* Watermark */}
-            <div className="absolute top-8 left-1/2 -translate-x-1/2 text-deepRed/5 font-heading font-bold text-[10rem] md:text-[14rem] tracking-widest select-none pointer-events-none z-0 whitespace-nowrap">
+            {/* Watermark - hidden on mobile, visible on md+ */}
+            <div className="hidden md:block absolute top-8 left-1/2 -translate-x-1/2 text-deepRed/5 font-heading font-bold text-[10rem] lg:text-[14rem] tracking-widest select-none pointer-events-none z-0 whitespace-nowrap">
                 SUÜKR
             </div>
 
