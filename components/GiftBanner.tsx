@@ -32,33 +32,51 @@ export default function GiftBanner() {
     }, []);
 
     return (
-        <section id="e-gift" className="py-24 w-full bg-whiteOff flex items-center justify-center relative z-20">
-            {/* The Ticket Banner */}
+        <section id="e-gift" className="py-12 w-full bg-whiteOff flex items-center justify-center relative z-20">
+            {/* The Gift Ticket Banner */}
             <div
-                className="relative w-[95%] max-w-6xl h-[280px] md:h-[350px] shadow-2xl flex flex-row items-center justify-center md:justify-around px-8 md:px-32 overflow-hidden"
+                className="relative w-[98%] max-w-7xl h-[200px] md:h-[240px] shadow-2xl flex flex-col md:flex-row items-center justify-between px-16 md:px-32 overflow-hidden"
                 style={{ clipPath }}
             >
-                {/* Background Color & Pattern */}
+                {/* Background Color */}
                 <div className="absolute inset-0 bg-[#721011] z-0"></div>
+                
+                {/* Background Pattern - Low opacity dessert icons */}
                 <div
-                    className="absolute inset-0 z-0 bg-[url('/images/dessert_pattern.png')] bg-cover bg-center opacity-40 mix-blend-lighten"
+                    className="absolute inset-0 z-0 bg-[url('/images/dessert_pattern.png')] bg-cover bg-center opacity-10 mix-blend-lighten"
                 ></div>
 
-                {/* Content Container */}
-                <div className="relative z-10 w-full flex flex-row items-center justify-between">
+                {/* Content Container with Golden Ratio spacing */}
+                <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-between gap-8">
 
-                    {/* Left Text */}
-                    <div className="text-whiteOff font-heading font-bold text-4xl md:text-6xl leading-snug md:leading-tight text-center md:text-center w-full md:w-1/2 mb-0 flex flex-col items-center gap-2">
-                        <span>Give The Gift</span>
-                        <span>Of</span>
-                        {/* Logo mark instead of plain text */}
-                        <span className="text-[#D5AF34] tracking-widest">SUÜKR</span>
+                    {/* Left Typography Section */}
+                    <div className="text-white w-full md:w-3/5 flex flex-col items-center md:items-start">
+                        <div className="text-center md:text-left">
+                            {/* Main Headline - Rounded Sans-Serif */}
+                            <h2 className="font-sans font-bold text-2xl md:text-4xl leading-[1.1] mb-1">
+                                <span className="block">Give The Gift</span>
+                                <span className="block ml-[25%] text-lg md:text-3xl font-medium my-1">Of</span>
+                            </h2>
+                            
+                            {/* Brand Logo - Using consistent logo font styling */}
+                            <div className="text-[#FFD97D] text-3xl md:text-5xl font-heading font-bold tracking-widest uppercase mt-2">
+                                SUÜKR
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Right Circle Button */}
-                    <div className="w-full md:w-1/2 flex justify-center md:justify-end">
-                        <button className="w-[150px] h-[150px] md:w-[220px] md:h-[220px] bg-[#D5AF34] rounded-full flex flex-col items-center justify-center text-whiteOff font-heading font-bold text-3xl md:text-4xl transition-transform hover:scale-105 active:scale-95 cursor-pointer shadow-lg">
-                            Tap Here
+                    {/* Right CTA Section - Golden Ratio spacing */}
+                    <div className="w-full md:w-2/5 flex justify-center md:justify-end">
+                        <button 
+                            className="group w-[140px] h-[140px] md:w-[180px] md:h-[180px] bg-[#ffd676] rounded-full flex flex-col items-center justify-center text-white font-sans transition-all duration-300 ease-out hover:scale-105 hover:shadow-[0_10px_20px_rgba(0,0,0,0.2)] active:scale-95 cursor-pointer shadow-lg"
+                            aria-label="Purchase E-Gift Card"
+                        >
+                            <span className="text-lg md:text-xl font-bold group-hover:text-[#721011] transition-colors duration-300">
+                                Tap Here
+                            </span>
+                            <span className="text-sm md:text-base font-normal mt-1 group-hover:text-[#721011] transition-colors duration-300">
+                                for E-Gift
+                            </span>
                         </button>
                     </div>
 

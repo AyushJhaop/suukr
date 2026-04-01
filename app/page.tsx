@@ -14,9 +14,9 @@ export default function Home() {
       <Hero />
       <ProductCarousel />
       <Flavours />
+      <MobileOrder />
       <GiftBanner />
       <Categories />
-      <MobileOrder />
       <VisitUs />
       <SwirlSection />
       <Footer />
