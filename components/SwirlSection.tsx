@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 export default function SwirlSection() {
-    const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+    const [currentAutoImage, setCurrentAutoImage] = useState<string>("/images/mango_froyo.png");
     const sectionRef = useRef<HTMLElement>(null);
     
     const { scrollYProgress } = useScroll({
@@ -13,25 +13,45 @@ export default function SwirlSection() {
         offset: ["start end", "end start"]
     });
 
+    // Array of froyo images to cycle through
+    const froyoImages = [
+        "/images/mango_froyo.png",
+        "/images/strawberry_froyo.png",
+        "/images/vanilla_froyo.png"
+    ];
+
+    // Auto-switch images every 1 second
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentAutoImage(prev => {
+                const currentIndex = froyoImages.indexOf(prev);
+                const nextIndex = (currentIndex + 1) % froyoImages.length;
+                return froyoImages[nextIndex];
+            });
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
+
     const words = [
         [
-            { text: "SWIRL", type: "hollow", img: "/images/mango_froyo.png" },
+            { text: "SWIRL", type: "solid" },
             { text: "○", type: "separator" },
-            { text: "FUN", type: "hollow", img: "/images/strawberry_froyo.png" },
-        ],
-        [
-            { text: "○", type: "separator" },
-            { text: "SWEET", type: "solid", img: "/images/vanilla_froyo.png" },
-            { text: "○", type: "separator" },
-            { text: "SWIRL", type: "hollow", img: "/images/mango_froyo.png" },
+            { text: "FUN", type: "hollow" },
             { text: "○", type: "separator" },
         ],
         [
-            { text: "FUN", type: "hollow", img: "/images/strawberry_froyo.png" },
             { text: "○", type: "separator" },
-            { text: "SWIRL", type: "hollow", img: "/images/mango_froyo.png" },
+            { text: "SWEET", type: "solid" },
             { text: "○", type: "separator" },
-            { text: "FUN", type: "hollow", img: "/images/vanilla_froyo.png" },
+            { text: "SWIRL", type: "hollow" },
+            { text: "○", type: "separator" },
+        ],
+        [
+            { text: "FUN", type: "solid" },
+            { text: "○", type: "separator" },
+            { text: "SWIRL", type: "hollow" },
+            { text: "○", type: "separator" },
         ]
     ];
 
@@ -39,7 +59,6 @@ export default function SwirlSection() {
         <section
             ref={sectionRef}
             className="relative w-full py-24 md:py-48 bg-[#FEF2F2] flex items-center justify-center overflow-hidden z-10"
-            onMouseLeave={() => setHoveredImage(null)}
         >
             {/* Background SVG Curve */}
             <div className="absolute inset-0 z-[1] pointer-events-none">
@@ -59,7 +78,7 @@ export default function SwirlSection() {
                     const xTransform = useTransform(
                         scrollYProgress,
                         [0, 1],
-                        isRightToLeft ? [0, -400] : [0, 400]
+                        isRightToLeft ? [0, -800] : [0, 800]
                     );
                     
                     return (
@@ -74,8 +93,6 @@ export default function SwirlSection() {
                                         {row.map((item, iIdx) => (
                                             <span
                                                 key={`${dupIdx}-${iIdx}`}
-                                                onMouseEnter={() => item.img && setHoveredImage(item.img)}
-                                                onMouseLeave={() => setHoveredImage(null)}
                                                 className={`
                                                     font-heading font-black text-[3rem] md:text-6xl lg:text-[7rem] cursor-crosshair transition-transform hover:scale-[1.03] duration-150 relative z-30
                                                     ${item.type === "separator" ? "text-[#721011] text-3xl md:text-5xl font-medium tracking-widest pointer-events-none" : "hover:text-deepRed/80"}
@@ -94,27 +111,28 @@ export default function SwirlSection() {
                 })}
             </div>
 
-            {/* Hover Oval Image */}
+            {/* Auto-switching Oval Image */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20">
-                <AnimatePresence>
-                    {hoveredImage && (
+                <div className="w-[250px] h-[320px] md:w-[300px] md:h-[350px] rounded-full overflow-hidden shadow-2xl relative">
+                    <AnimatePresence>
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-                            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                            exit={{ opacity: 0, scale: 0.8, rotate: 5 }}
-                            transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                            className="w-[280px] h-[340px] md:w-[350px] md:h-[420px] rounded-full overflow-hidden shadow-2xl relative"
+                            key={currentAutoImage}
+                            initial={{ opacity: 1 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 1 }}
+                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                            className="absolute inset-0"
                         >
                             <Image
-                                src={hoveredImage}
+                                src={currentAutoImage}
                                 fill
                                 className="object-cover scale-110"
-                                alt="Hovered Flavor"
+                                alt="Froyo Flavor"
                                 priority
                             />
                         </motion.div>
-                    )}
-                </AnimatePresence>
+                    </AnimatePresence>
+                </div>
             </div>
 
         </section>
