@@ -60,24 +60,31 @@ export default function VisitUs() {
 
                         <div className="mb-4 sm:mb-6">
                             <h4 className="text-deepRed font-heading font-bold text-lg md:text-xl mb-3 sm:mb-4">Opening Hours</h4>
-                            <p className="text-deepRed/80 font-body text-sm sm:text-base md:text-[17px] mb-1 tracking-wide font-medium">Mon-Fri : 7am - 9pm</p>
-                            <p className="text-deepRed/80 font-body text-sm sm:text-base md:text-[17px] tracking-wide font-medium">Sat-Sun : 8am - 10 pm</p>
+                            <p className="text-deepRed/80 font-body text-sm sm:text-base md:text-[17px] mb-1 tracking-wide font-medium">Monday – Friday: 11:00 AM – 8:30 PM</p>
+                            <p className="text-deepRed/80 font-body text-sm sm:text-base md:text-[17px] mb-1 tracking-wide font-medium">Saturday: 9:00 AM – 9:00 PM</p>
+                            <p className="text-deepRed/80 font-body text-sm sm:text-base md:text-[17px] tracking-wide font-medium">Sunday: 9:00 AM – 8:00 PM</p>
                         </div>
 
                         <div className="w-full h-px bg-[#721011]/20 mb-4 sm:mb-6"></div>
 
                         <div>
                             <h4 className="text-deepRed font-heading font-bold text-lg md:text-xl mb-3 sm:mb-4">Location</h4>
-                            <p className="text-deepRed/80 font-body text-sm sm:text-base md:text-[17px] mb-1 tracking-wide font-medium">123 Sweet Street, Kellyville</p>
-                            <p className="text-deepRed/80 font-body text-sm sm:text-base md:text-[17px] tracking-wide font-medium">NSW 2155</p>
+                            <p className="text-deepRed/80 font-body text-sm sm:text-base md:text-[17px] mb-1 tracking-wide font-medium">Opp. Woolworths,</p>
+                            <p className="text-deepRed/80 font-body text-sm sm:text-base md:text-[17px] mb-1 tracking-wide font-medium">K2/30 Severn Vale Dr,</p>
+                            <p className="text-deepRed/80 font-body text-sm sm:text-base md:text-[17px] tracking-wide font-medium">Kellyville NSW 2155</p>
                         </div>
 
                     </div>
 
                     {/* Get Directions Button */}
-                    <button className="mt-8 sm:mt-12 px-8 sm:px-10 py-4 sm:py-5 bg-[#721011] text-[#FEF2F2] font-heading font-bold text-lg sm:text-xl md:text-2xl rounded-xl sm:rounded-2xl shadow-lg transition-transform hover:scale-105 active:scale-95 w-full sm:w-auto min-h-[44px]">
+                    <a
+                        href="https://maps.app.goo.gl/AFaR8rVB4tXKmDH49"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-8 sm:mt-12 px-8 sm:px-10 py-4 sm:py-5 bg-[#721011] text-[#FEF2F2] font-heading text-center font-bold text-lg sm:text-xl md:text-2xl rounded-xl sm:rounded-2xl shadow-lg transition-transform hover:scale-105 active:scale-95 w-full sm:w-auto min-h-[44px] block"
+                    >
                         Get Directions
-                    </button>
+                    </a>
 
                 </div>
             </div>

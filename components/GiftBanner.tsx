@@ -59,7 +59,7 @@ export default function GiftBanner() {
                             </h2>
                             
                             {/* Brand Logo - Using consistent logo font styling */}
-                            <div className="text-[#FFD97D] text-2xl sm:text-3xl md:text-5xl font-heading font-bold tracking-widest uppercase mt-2">
+                            <div className="text-[#D5AF34] text-2xl sm:text-3xl md:text-5xl font-heading font-bold tracking-widest uppercase mt-2">
                                 SUÜKR
                             </div>
                         </div>
@@ -68,7 +68,7 @@ export default function GiftBanner() {
                     {/* Right CTA Section - Golden Ratio spacing */}
                     <div className="w-full md:w-2/5 flex justify-center md:justify-end">
                         <button 
-                            className="group w-[100px] h-[100px] sm:w-[140px] sm:h-[140px] md:w-[180px] md:h-[180px] bg-[#ffd676] rounded-full flex flex-col items-center justify-center text-white font-sans transition-all duration-300 ease-out hover:scale-105 hover:shadow-[0_10px_20px_rgba(0,0,0,0.2)] active:scale-95 cursor-pointer shadow-lg min-w-[44px] min-h-[44px]"
+                            className="group w-[100px] h-[100px] sm:w-[140px] sm:h-[140px] md:w-[180px] md:h-[180px] bg-[#D5AF34] rounded-full flex flex-col items-center justify-center text-white font-sans transition-all duration-300 ease-out hover:scale-105 hover:shadow-[0_10px_20px_rgba(0,0,0,0.2)] active:scale-95 cursor-pointer shadow-lg min-w-[44px] min-h-[44px]"
                             aria-label="Purchase E-Gift Card"
                         >
                             <span className="text-sm sm:text-lg md:text-xl font-bold group-hover:text-[#721011] transition-colors duration-300">

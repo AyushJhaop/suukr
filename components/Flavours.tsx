@@ -29,7 +29,7 @@ const flavorStates: FlavorState[] = [
         name: "Alphonso Gold",
         description: "Intense, sun-drenched nectar captured in a frozen dance. A vibrant burst of tropical soul that lingers like a warm coastal breeze on your palate.",
         ctaText: "Capture the Sun — Order Now",
-        accentColor: "#FFD97D",
+        accentColor: "#D5AF34",
         image: "/images/mango_froyo.png",
         vibe: 'vibrant'
     },

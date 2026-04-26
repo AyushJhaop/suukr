@@ -7,7 +7,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 export default function SwirlSection() {
     const [currentAutoImage, setCurrentAutoImage] = useState<string>("/images/mango_froyo.png");
     const sectionRef = useRef<HTMLElement>(null);
-    
+
     const { scrollYProgress } = useScroll({
         target: sectionRef,
         offset: ["start end", "end start"]
@@ -72,17 +72,17 @@ export default function SwirlSection() {
                 {words.map((row, rIdx) => {
                     // Determine animation direction: odd rows (0,2) go right to left, even row (1) goes left to right
                     const isRightToLeft = rIdx % 2 === 0;
-                    
+
                     // Create scroll-based transforms for each row
                     const xTransform = useTransform(
                         scrollYProgress,
                         [0, 1],
                         isRightToLeft ? [0, -200] : [0, 200]
                     );
-                    
+
                     return (
                         <div key={rIdx} className="relative w-full overflow-hidden">
-                            <motion.div 
+                            <motion.div
                                 className="flex flex-row items-center justify-center gap-3 sm:gap-6 md:gap-12 w-max whitespace-nowrap px-2 sm:px-4"
                                 style={{ x: xTransform }}
                             >

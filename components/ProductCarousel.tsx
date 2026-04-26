@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -63,6 +63,14 @@ export default function ProductCarousel() {
         setActiveIndex((prev) => (prev - 1 + total) % total);
     }, [total]);
 
+    // Auto-scroll logic every 1500ms
+    useEffect(() => {
+        const interval = setInterval(() => {
+            handleNext();
+        }, 1500);
+        return () => clearInterval(interval);
+    }, [handleNext]);
+
 
     // Returns position config for each card relative to active
     const getConfig = (i: number) => {
@@ -73,13 +81,13 @@ export default function ProductCarousel() {
         if (abs > 2) return null;
 
         const isCenter = d === 0;
-        
+
         // Responsive positioning - smaller offsets for mobile
         const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
         const isTablet = typeof window !== 'undefined' && window.innerWidth < 1024;
-        
+
         let xOffset, scale, opacity;
-        
+
         if (isMobile) {
             const xMap: Record<string, number> = { "-2": -300, "-1": -150, "0": 0, "1": 150, "2": 300 };
             const scaleMap: Record<string, number> = { "-2": 0.7, "-1": 0.85, "0": 1, "1": 0.85, "2": 0.7 };
@@ -102,7 +110,7 @@ export default function ProductCarousel() {
             scale = scaleMap[String(d)] ?? 0.7;
             opacity = opacityMap[String(d)] ?? 0;
         }
-        
+
         const zMap: Record<string, number> = { "-2": 1, "-1": 2, "0": 5, "1": 2, "2": 1 };
 
         return {
@@ -160,7 +168,7 @@ export default function ProductCarousel() {
                                 opacity: cfg.opacity,
                                 zIndex: cfg.zIndex,
                             }}
-                            transition={{ type: "spring", stiffness: 220, damping: 28 }}
+                            transition={{ duration: 0.7, ease: "easeInOut" }}
                             onClick={() => setActiveIndex(index)}
                             className={`absolute w-[200px] h-[280px] sm:w-[250px] sm:h-[350px] md:w-[300px] md:h-[400px] lg:w-[350px] lg:h-[450px] rounded-3xl sm:rounded-4xl overflow-hidden cursor-pointer transition-shadow duration-300
                                 ${cfg.isCenter ? "shadow-2xl ring-2 ring-white/40" : "shadow-lg"}
@@ -189,7 +197,7 @@ export default function ProductCarousel() {
                                     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                                     {/* Shimmer gradient */}
                                     <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent rounded-full" />
-                                    
+
                                     <div className="relative px-2 sm:px-3 py-1 flex items-center gap-1.5">
                                         <span className="w-1.5 h-1.5 rounded-full bg-gold shadow-sm animate-pulse" />
                                         <span className="text-white text-[10px] sm:text-[11px] font-semibold tracking-widest uppercase drop-shadow-sm">{product.tag}</span>
@@ -208,7 +216,7 @@ export default function ProductCarousel() {
                                     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                                     {/* Shimmer gradient */}
                                     <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent rounded-xl sm:rounded-2xl" />
-                                    
+
                                     <div className="relative px-3 sm:px-4 py-2.5 sm:py-3.5">
                                         <h3 className="text-white font-heading text-base sm:text-lg md:text-xl font-semibold leading-tight drop-shadow-sm">
                                             {product.name}
@@ -247,11 +255,10 @@ export default function ProductCarousel() {
                         key={i}
                         onClick={() => setActiveIndex(i)}
                         aria-label={`Go to slide ${i + 1}`}
-                        className={`rounded-full transition-all duration-300 ${
-                            i === activeIndex
-                                ? "w-7 h-2 bg-deepRed shadow-sm"
-                                : "w-2 h-2 bg-deepRed/20 hover:bg-deepRed/50"
-                        }`}
+                        className={`rounded-full transition-all duration-300 ${i === activeIndex
+                            ? "w-7 h-2 bg-deepRed shadow-sm"
+                            : "w-2 h-2 bg-deepRed/20 hover:bg-deepRed/50"
+                            }`}
                     />
                 ))}
             </div>
