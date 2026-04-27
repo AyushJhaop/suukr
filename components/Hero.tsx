@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 
 export default function Hero() {
@@ -24,20 +25,17 @@ export default function Hero() {
     return (
         <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
             <Navbar />
-            {/* Background Video */}
+            {/* Background Image */}
             <div className="absolute inset-0 z-0">
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                >
-                    {/* Missing file intentionally, fallback to gradient if video doesn't load */}
-                    <source src="/videos/Build_luxury_dessert_202603242225.mp4" type="video/mp4" />
-                </video>
-                {/* Overlay gradient (cream/beige tint) */}
-                <div className="absolute inset-0 bg-[#F7F1E5]/60 z-10" />
+                <Image
+                    src="/images/SUUKR_hero_2880x2304.jpg"
+                    alt="Suukr Hero"
+                    fill
+                    priority
+                    className="object-cover"
+                />
+                {/* Light overlay for better dark text readability on the navbar */}
+                <div className="absolute inset-0 bg-white/40 z-10" />
             </div>
 
             {/* Content */}
@@ -66,12 +64,7 @@ export default function Hero() {
                     transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                     className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full max-w-md justify-center items-center"
                 >
-                    <motion.button
-                        whileTap={{ scale: 0.95 }}
-                        className="px-6 sm:px-8 py-3 sm:py-4 bg-deepRed text-whiteOff font-body font-semibold text-sm sm:text-base rounded-full shadow-lg transition-colors hover:bg-deepRed/90 min-h-[44px]"
-                    >
-                        Order Now
-                    </motion.button>
+
 
                     <motion.button
                         onClick={() => router.push('/menu')}

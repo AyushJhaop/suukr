@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const categories = [
     {
         title: "Desserts",
-        image: "/images/waffles.jpg",
+        image: "/images/SUUKR_tripple chocolate waffle_2880x2304.jpg",
         icon: (
             <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-28 md:h-28 mb-8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 {/* Waffle base */}
@@ -48,7 +48,7 @@ const categories = [
     },
     {
         title: "Coffee",
-        image: "/images/coldbrew.jpg",
+        image: "/images/SUUKR_vanilla cold foam cold brew_2880x2304.jpg",
         icon: (
             <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-28 md:h-28 mb-8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 {/* Coffee cup */}
@@ -68,7 +68,7 @@ const categories = [
     },
     {
         title: "Shakes",
-        image: "/images/milkshake.jpg",
+        image: "/images/SUUKR_maltease shake_2880x2304.jpg",
         icon: (
             <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-28 md:h-28 mb-8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 {/* Glass */}
@@ -107,12 +107,24 @@ export default function Categories() {
                         onMouseLeave={() => setHoveredCategory(null)}
                     >
                         {/* Background overlay on hover */}
-                        <div className="absolute inset-0 bg-deepRed/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        
-                        <div className="relative z-10 text-deepRed transform transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-2">
+                        <div className="absolute inset-0 bg-deepRed/5 opacity-100 group-hover:opacity-0 transition-opacity duration-300 z-10" />
+
+                        {/* Image background revealed on hover */}
+                        <div className="absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0">
+                            <Image
+                                src={category.image}
+                                alt={category.title}
+                                fill
+                                className="object-cover scale-110 group-hover:scale-100 transition-transform duration-700 ease-out"
+                            />
+                            {/* Dark gradient for text readability */}
+                            <div className="absolute inset-0 bg-black/40" />
+                        </div>
+
+                        <div className="relative z-20 text-deepRed group-hover:text-whiteOff transform transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-2">
                             {category.icon}
                         </div>
-                        <h3 className="relative z-10 text-deepRed font-heading font-bold text-xl sm:text-2xl md:text-3xl text-center leading-tight tracking-wide max-w-[200px] sm:max-w-[220px] transition-colors duration-300 group-hover:text-deepRed/80">
+                        <h3 className="relative z-20 text-deepRed group-hover:text-whiteOff font-heading font-bold text-xl sm:text-2xl md:text-3xl text-center leading-tight tracking-wide max-w-[200px] sm:max-w-[220px] transition-colors duration-300">
                             {category.title === "Self-Serve Frozen Yoghurt" ? (
                                 <>
                                     <span className="block sm:hidden">Self-Serve Frozen Yoghurt</span>
