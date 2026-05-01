@@ -1,141 +1,142 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+
+const baseFlavours = [
+    {
+        name: "Summer Mango",
+        desc: "Perfect for summer",
+        image: "/images/mango_froyo.png"
+    },
+    {
+        name: "Classic Vanilla",
+        desc: "Light and heavenly",
+        image: "/images/vanilla_froyo.png"
+    },
+    {
+        name: "Fresh Strawberry",
+        desc: "Seasonal sweet",
+        image: "/images/strawberry_froyo.png"
+    }
+];
+
+// Duplicate for smooth infinite carousel effect
+const flavours = [...baseFlavours, ...baseFlavours].map((f, i) => ({ ...f, id: i }));
 
 export default function SwirlSection() {
-    const [currentAutoImage, setCurrentAutoImage] = useState<string>("/images/mango_froyo.png");
-    const sectionRef = useRef<HTMLElement>(null);
+    const [activeIndex, setActiveIndex] = useState(0);
 
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start end", "end start"]
-    });
-
-    // Array of froyo images to cycle through
-    const froyoImages = [
-        "/images/mango_froyo.png",
-        "/images/strawberry_froyo.png",
-        "/images/vanilla_froyo.png"
-    ];
-
-    // Auto-switch images every 1 second
+    // Auto-switch images every 3 seconds
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentAutoImage(prev => {
-                const currentIndex = froyoImages.indexOf(prev);
-                const nextIndex = (currentIndex + 1) % froyoImages.length;
-                return froyoImages[nextIndex];
-            });
-        }, 1000);
+            setActiveIndex((prev) => (prev + 1) % flavours.length);
+        }, 3000);
 
         return () => clearInterval(interval);
     }, []);
 
-    const words = [
-        [
-            { text: "SWIRL", type: "solid" },
-            { text: "○", type: "separator" },
-            { text: "FUN", type: "hollow" },
-            { text: "○", type: "separator" },
-        ],
-        [
-            { text: "○", type: "separator" },
-            { text: "SWEET", type: "solid" },
-            { text: "○", type: "separator" },
-            { text: "SWIRL", type: "hollow" },
-        ],
-        [
-            { text: "FUN", type: "solid" },
-            { text: "○", type: "separator" },
-            { text: "SWIRL", type: "hollow" },
-            { text: "○", type: "separator" },
-        ]
-    ];
+    const getCardProps = (index: number) => {
+        const diff = (index - activeIndex + flavours.length) % flavours.length;
+        
+        let x = "0vw";
+        let scale = 1;
+        let opacity = 1;
+        let zIndex = 10;
+
+        if (diff === 0) {
+            x = "0vw";
+            scale = 1;
+            opacity = 1;
+            zIndex = 20;
+        } else if (diff === 1) {
+            x = "32vw"; // Right visible
+            scale = 0.75;
+            opacity = 1;
+            zIndex = 10;
+        } else if (diff === flavours.length - 1) {
+            x = "-32vw"; // Left visible
+            scale = 0.75;
+            opacity = 1;
+            zIndex = 10;
+        } else {
+            // Hidden cards (behind the scenes)
+            x = diff > flavours.length / 2 ? "-64vw" : "64vw";
+            scale = 0.5;
+            opacity = 0;
+            zIndex = 0;
+        }
+
+        return { x, scale, opacity, zIndex };
+    };
 
     return (
-        <section
-            ref={sectionRef}
-            className="relative w-full py-24 md:py-48 bg-[#FEF2F2] flex items-center justify-center overflow-hidden z-10"
-        >
-            {/* Background SVG Curve */}
-            <div className="absolute inset-0 z-[1] pointer-events-none">
-                <svg viewBox="0 0 1440 1000" preserveAspectRatio="none" className="w-full h-full">
-                    {/* Consistent hourglass curve to match the rest of the site */}
-                    <path d="M 0,0 Q 720,300 1440,0 L 1440,1000 Q 720,700 0,1000 Z" className="fill-[#FFDEDE]" />
+        <section className="relative w-full h-[650px] md:h-[850px] bg-[#FFDEDE] flex items-center justify-center overflow-hidden z-10">
+            {/* Top White Curve */}
+            <div className="absolute top-0 left-0 w-full z-[1] pointer-events-none transform -translate-y-1">
+                <svg viewBox="0 0 1440 200" preserveAspectRatio="none" className="w-full h-[100px] md:h-[180px]">
+                    <path fill="#ffffff" d="M0,0 L1440,0 L1440,0 Q720,400 0,0 Z"></path>
                 </svg>
             </div>
 
-            {/* Text Grid */}
-            <div className="relative z-10 flex flex-col items-center justify-center gap-4 sm:gap-6 md:gap-10 w-full max-w-[100vw] overflow-hidden py-8 sm:py-10 md:py-20 lg:py-24">
-                {words.map((row, rIdx) => {
-                    // Determine animation direction: odd rows (0,2) go right to left, even row (1) goes left to right
-                    const isRightToLeft = rIdx % 2 === 0;
-
-                    // Create scroll-based transforms for each row
-                    const xTransform = useTransform(
-                        scrollYProgress,
-                        [0, 1],
-                        isRightToLeft ? [0, -200] : [0, 200]
-                    );
-
-                    return (
-                        <div key={rIdx} className="relative w-full overflow-hidden">
-                            <motion.div
-                                className="flex flex-row items-center justify-center gap-3 sm:gap-6 md:gap-12 w-max whitespace-nowrap px-2 sm:px-4"
-                                style={{ x: xTransform }}
-                            >
-                                {/* Duplicate the content multiple times for seamless scrolling */}
-                                {Array.from({ length: 6 }).map((_, dupIdx) => (
-                                    <div key={dupIdx} className="flex flex-row items-center gap-3 sm:gap-6 md:gap-12">
-                                        {row.map((item, iIdx) => (
-                                            <span
-                                                key={`${dupIdx}-${iIdx}`}
-                                                className={`
-                                                    font-heading font-black text-[2rem] sm:text-[3rem] md:text-6xl lg:text-[7rem] cursor-crosshair transition-transform hover:scale-[1.03] duration-150 relative z-30
-                                                    ${item.type === "separator" ? "text-[#721011] text-xl sm:text-3xl md:text-5xl font-medium tracking-widest pointer-events-none" : "hover:text-deepRed/80"}
-                                                    ${item.type === "solid" ? "text-[#721011]" : ""}
-                                                `}
-                                                style={item.type === "hollow" ? { WebkitTextStroke: "2px #721011", color: "transparent" } : {}}
-                                            >
-                                                {item.text}
-                                            </span>
-                                        ))}
-                                    </div>
-                                ))}
-                            </motion.div>
-                        </div>
-                    );
-                })}
+            {/* Bottom White Curve */}
+            <div className="absolute bottom-0 left-0 w-full z-[1] pointer-events-none transform translate-y-1">
+                <svg viewBox="0 0 1440 200" preserveAspectRatio="none" className="w-full h-[100px] md:h-[180px] rotate-180">
+                    <path fill="#ffffff" d="M0,0 L1440,0 L1440,0 Q720,400 0,0 Z"></path>
+                </svg>
             </div>
 
-            {/* Auto-switching Oval Image */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20">
-                <div className="w-[180px] h-[240px] sm:w-[250px] sm:h-[320px] md:w-[300px] md:h-[350px] rounded-full overflow-hidden shadow-2xl relative">
-                    <AnimatePresence>
-                        <motion.div
-                            key={currentAutoImage}
-                            initial={{ opacity: 1 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 1 }}
-                            transition={{ duration: 0.5, ease: "easeInOut" }}
-                            className="absolute inset-0"
-                        >
-                            <Image
-                                src={currentAutoImage}
-                                fill
-                                className="object-cover scale-110"
-                                alt="Froyo Flavor"
-                                priority
-                                sizes="(max-width: 640px) 180px, (max-width: 768px) 250px, 300px"
-                                unoptimized
-                            />
-                        </motion.div>
-                    </AnimatePresence>
+            {/* Heading - absolutely positioned so it doesn't shift the carousel */}
+            <div className="absolute top-[80px] md:top-[120px] left-0 w-full text-center z-20 flex flex-col items-center">
+                <h2 className="font-heading text-3xl sm:text-4xl md:text-[44px] text-[#721011] font-bold uppercase tracking-widest drop-shadow-sm">
+                    OUR FLAVOURS
+                </h2>
+                {/* Scribble line under heading */}
+                <div className="mt-2 text-[#D5AF34]">
+                    <svg width="220" height="24" viewBox="0 0 280 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[180px] sm:w-[220px]">
+                        <path d="M2.5 13.5C28.5 6.5 76 2.5 140 10.5C204 18.5 252.5 11.5 277 5.5" stroke="#D5AF34" strokeWidth="4" strokeLinecap="round" />
+                        <path d="M120 20C135 18 165 18 185 20" stroke="#D5AF34" strokeWidth="4" strokeLinecap="round" />
+                    </svg>
                 </div>
             </div>
 
+            {/* Carousel Container - perfectly centered in the section */}
+            <div className="relative w-full h-full flex items-center justify-center z-20">
+                {flavours.map((flavour, index) => {
+                    const props = getCardProps(index);
+                    return (
+                        <motion.div
+                            key={flavour.id}
+                            animate={{
+                                x: props.x,
+                                scale: props.scale,
+                                opacity: props.opacity,
+                                zIndex: props.zIndex,
+                            }}
+                            transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+                            className="absolute w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[420px] md:h-[420px] bg-white rounded-full shadow-[0_8px_40px_rgba(0,0,0,0.06)] flex flex-col items-center justify-center border border-gray-100"
+                        >
+                            <div className="relative w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[300px] md:h-[300px] mb-2 md:mb-4 scale-105 hover:scale-110 transition-transform duration-500">
+                                <Image
+                                    src={flavour.image}
+                                    fill
+                                    alt={flavour.name}
+                                    className="object-contain"
+                                    sizes="(max-width: 640px) 130px, (max-width: 768px) 160px, 220px"
+                                    priority={index === 0 || index === 1 || index === 5}
+                                />
+                            </div>
+                            <h3 className="text-[#721011] font-heading text-xl sm:text-2xl md:text-[28px] font-bold mb-0.5 md:mb-1 text-center px-4">
+                                {flavour.name}
+                            </h3>
+                            <p className="text-[#D5AF34] font-body text-xs sm:text-sm md:text-base font-medium text-center">
+                                {flavour.desc}
+                            </p>
+                        </motion.div>
+                    );
+                })}
+            </div>
         </section>
     );
 }

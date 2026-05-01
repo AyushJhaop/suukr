@@ -35,11 +35,11 @@ export default function Hero() {
                     className="object-cover"
                 />
                 {/* Light overlay for better dark text readability on the navbar */}
-                <div className="absolute inset-0 bg-white/40 z-10" />
+                <div className="absolute inset-0 bg-white/60 z-10" />
             </div>
 
             {/* Content */}
-            <div className="relative z-20 flex flex-col items-center text-center px-4 max-w-4xl mx-auto">
+            <div className="relative z-20 flex flex-col items-center text-center px-4 pb-28 sm:pb-0 max-w-4xl mx-auto">
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                    className="font-body text-base sm:text-lg md:text-2xl text-black/80 font-medium mb-8 sm:mb-10 tracking-wide max-w-2xl"
+                    className="font-body text-base sm:text-lg md:text-2xl text-[#D5AF34] drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)] font-semibold mb-8 sm:mb-10 tracking-wide max-w-2xl"
                 >
                     Frozen Yogurt • Shakes • Waffles • Cold Brew
                 </motion.p>
@@ -68,8 +68,9 @@ export default function Hero() {
 
                     <motion.button
                         onClick={() => router.push('/menu')}
+                        whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-6 sm:px-8 py-3 sm:py-4 bg-[#FFDEDE] border-none text-black font-body font-semibold text-sm sm:text-base rounded-full backdrop-blur-sm transition-colors hover:bg-[#FFDEDE]/80 min-h-[44px]"
+                        className="px-6 sm:px-8 py-3 sm:py-4 bg-[#FFDEDE] border-none text-black font-body font-semibold text-sm sm:text-base rounded-full backdrop-blur-sm transition-all shadow-md hover:shadow-lg hover:bg-[#ffcdcd] min-h-[44px]"
                     >
                         View Menu
                     </motion.button>

@@ -36,16 +36,28 @@ export default function VisitUs() {
             <div className="relative w-[95%] sm:w-[90%] max-w-6xl mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-center z-10 mt-4 sm:mt-8">
 
                 {/* Map Box */}
-                <div className="relative w-full lg:w-[550px] xl:w-[600px] h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg flex-shrink-0 z-10">
+                <a 
+                    href="https://maps.app.goo.gl/vCjQtX4E4naZ97qR9"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative w-full lg:w-[550px] xl:w-[600px] h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg flex-shrink-0 z-10 block group"
+                >
                     <Image
-                        src="/images/map_image.png"
+                        src="/images/satellite_map.jpg"
                         fill
                         sizes="(max-width: 1024px) 95vw, 600px"
-                        className="object-cover"
-                        alt="Suükr Location Map"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        alt="Suükr Live Location Map"
                         priority
                     />
-                </div>
+                    
+                    {/* Hover overlay for better UX */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center pointer-events-none z-20">
+                        <div className="bg-white/95 text-[#721011] px-6 py-3 rounded-full font-heading font-bold text-lg opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl transform scale-95 group-hover:scale-100">
+                            Open in Maps
+                        </div>
+                    </div>
+                </a>
 
                 {/* Overlapping Info Card and Button */}
                 <div className="relative w-[90%] sm:w-[80%] lg:w-[450px] lg:-ml-16 xl:-ml-24 mt-[-40px] sm:mt-[-60px] lg:mt-[80px] xl:lg:mt-[100px] flex flex-col items-center z-20">
@@ -78,7 +90,7 @@ export default function VisitUs() {
 
                     {/* Get Directions Button */}
                     <a
-                        href="https://maps.app.goo.gl/AFaR8rVB4tXKmDH49"
+                        href="https://maps.app.goo.gl/vCjQtX4E4naZ97qR9"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="mt-8 sm:mt-12 px-8 sm:px-10 py-4 sm:py-5 bg-[#721011] text-[#FEF2F2] font-heading text-center font-bold text-lg sm:text-xl md:text-2xl rounded-xl sm:rounded-2xl shadow-lg transition-transform hover:scale-105 active:scale-95 w-full sm:w-auto min-h-[44px] block"

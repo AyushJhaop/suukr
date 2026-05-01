@@ -7,17 +7,38 @@ import Footer from "@/components/Footer";
 
 const menuSections = [
     {
-        title: "Cold Brew & Coffee",
-        description: "Slow-steeped. Smooth & Bold.",
+        title: "Brew Bar & Coffee",
+        description: "Slow-steeped for 20 hours. Smooth & Bold.",
         images: [
             "/images/SUUKR_vanilla cold foam cold brew_2880x2304.jpg",
-            "/images/SUUKR_tiramisu cold foam cold brew_2880x2304.jpg"
+            "/images/SUUKR_tiramisu cold foam cold brew_2880x2304.jpg",
+            "/images/coldbrew.jpg",
+            "/images/DSC08200.jpg"
         ],
         items: [
-            { name: "Vanilla Cold Foam Cold Brew", desc: "Signature cold brew topped with sweet vanilla cream" },
-            { name: "Tiramisu Cold Brew", desc: "Rich cocoa and marscapone foam" },
-            { name: "Nitro Cold Brew", desc: "Silky, creamy, cascading nitro cold brew" },
-            { name: "Latte / Cappuccino", desc: "Classic espresso based perfectly extracted" }
+            { name: "Signature Brew", desc: "Nitro Cold Brew, Cold Brew, Seasonal Brew" },
+            { name: "Cold Brew Latte", desc: "Coconut, Almond Maple, Oat Vanilla" },
+            { name: "Cloudy", desc: "Mont Blanc, Salted Caramel, Tiramisu, Vanilla Sweet Cream" },
+            { name: "Coffee", desc: "Latte, Cappuccino, Flat White, Long Black, Espresso, Piccolo, Mocha, Chai" },
+            { name: "Iced", desc: "Latte, Long Black, Coffee, Matcha, Chai, Frappe" }
+        ]
+    },
+    {
+        title: "Smoothies & Protein",
+        description: "High-protein • Refreshing 🌱",
+        images: [
+            "/images/yogurt.jpg",
+            "/images/milkshake.jpg",
+            "/images/DSC08458.jpg",
+            "/images/DSC08527.jpg"
+        ],
+        items: [
+            { name: "Berry Boost", desc: "Strawberries, Mango, Raspberries, Goji Berries, Almond Milk" },
+            { name: "Purple Power", desc: "Acai, Blueberries, Banana, Dates, Oat Milk" },
+            { name: "Tropical Sky", desc: "Pineapple, Mango, Banana, Passionfruit, Blue Spirulina, Coconut Milk" },
+            { name: "Blue Spirulina Protein", desc: "Blue Spirulina, Banana, Almond Milk, Vanilla Protein" },
+            { name: "Cocoa Energy", desc: "Cold Brew Coffee, Cacao, Almond Milk, Vanilla Protein" },
+            { name: "Strawberry Shortcake", desc: "Strawberries, Oat Milk, Vanilla Protein, Short Bread" }
         ]
     },
     {
@@ -33,12 +54,41 @@ const menuSections = [
             { name: "Cookie Monster", desc: "Oreo cookies, blue spirulina & sprinkles" },
             { name: "Pistachio Silk", desc: "Pistachio butter, pistachio crunch" },
             { name: "Mal-tease", desc: "Maltesers, malty chocolate" },
-            { name: "Vanilla Shake", desc: "Classic rich vanilla gelato shake" }
+            { name: "Golden Gaytime", desc: "Caramel, vanilla, biscuit crunch" }
+        ]
+    },
+    {
+        title: "Classic Shakes",
+        description: "Made with gelato, topped with whipped cream",
+        images: [
+            "/images/milkshake.jpg",
+            "/images/DSC08136.jpg",
+            "/images/DSC08238.jpg"
+        ],
+        items: [
+            { name: "Biscoff", desc: "" },
+            { name: "Nutella", desc: "" },
+            { name: "Caramel", desc: "" },
+            { name: "Strawberry", desc: "" },
+            { name: "Chocolate", desc: "" },
+            { name: "Vanilla", desc: "" }
+        ]
+    },
+    {
+        title: "Speciality Drinks",
+        description: "Handcrafted unique flavors",
+        images: [
+            "/images/SUUKR_straberry rose matcha_2880x2304.jpg",
+            "/images/SUUKR_italian hot chocolate_2880x2304.jpg"
+        ],
+        items: [
+            { name: "Strawberry Rose Matcha 🌱", desc: "Premium matcha, milk, strawberry-rose compote, vanilla cold foam" },
+            { name: "Italian Hot Chocolate 🌱", desc: "Thick creamy dark hot chocolate" }
         ]
     },
     {
         title: "Belgian Waffles",
-        description: "Crispy outside, fluffy inside, egg-less",
+        description: "Made to order • Egg-less • In-house mix",
         images: [
             "/images/SUUKR_straberry with cream waffle_2880x2304.jpg",
             "/images/SUUKR_pistachio crunch waffle_2880x2304.jpg",
@@ -46,9 +96,10 @@ const menuSections = [
             "/images/SUUKR_tripple chocolate waffle_2880x2304.jpg"
         ],
         items: [
-            { name: "Strawberry Cream", desc: "Fresh strawberries and whipped cream" },
-            { name: "Pistachio Crunch", desc: "Pistachio sauce and crushed nuts" },
             { name: "Biscoff & White Choc", desc: "Lotus biscoff and premium white chocolate" },
+            { name: "Nutella Overload", desc: "Rich nutella and chocolate topping" },
+            { name: "Pistachio Crunch", desc: "Pistachio sauce and crushed nuts" },
+            { name: "Strawberry Cream", desc: "Fresh strawberries and whipped cream" },
             { name: "Triple Chocolate", desc: "Dark, milk, and white chocolate overload" }
         ]
     },
@@ -61,22 +112,10 @@ const menuSections = [
             "/images/SUUKR_kanafeh chocolate_2880x2304.jpg"
         ],
         items: [
-            { name: "Classic Knafeh", desc: "Traditional sweet cheese knafeh with syrup" },
-            { name: "Pistachio Knafeh", desc: "Topped with excessive pistachio sauce and nuts" },
-            { name: "Chocolate Knafeh", desc: "Filled and topped with rich warm chocolate" },
-            { name: "Biscoff Knafeh", desc: "Topped with lotus biscoff spread and crumbs" }
-        ]
-    },
-    {
-        title: "Speciality Drinks",
-        description: "Handcrafted unique flavors",
-        images: [
-            "/images/SUUKR_straberry rose matcha_2880x2304.jpg",
-            "/images/SUUKR_italian hot chocolate_2880x2304.jpg"
-        ],
-        items: [
-            { name: "Strawberry Rose Matcha", desc: "Premium matcha, milk, strawberry-rose compote, vanilla cold foam" },
-            { name: "Italian Hot Chocolate", desc: "Thick creamy dark hot chocolate" }
+            { name: "Classic", desc: "Traditional sweet cheese knafeh with syrup" },
+            { name: "Biscoff", desc: "Topped with lotus biscoff spread and crumbs" },
+            { name: "Chocolate", desc: "Filled and topped with rich warm chocolate" },
+            { name: "Pistachio", desc: "Topped with excessive pistachio sauce and nuts" }
         ]
     }
 ];
@@ -94,21 +133,21 @@ const containerVariants = {
 
 const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 80, damping: 15 } }
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 80, damping: 15 } }
 };
 
 const imageVariants = {
     hidden: { opacity: 0, scale: 0.85, y: 40 },
-    show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring" as const, stiffness: 60, damping: 20 } }
+    show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 60, damping: 20 } }
 };
 
 export default function MenuPage() {
     return (
-        <main className="min-h-screen bg-[#F5EEE6] flex flex-col font-body">
+        <main className="min-h-screen bg-[#F5EEE6] flex flex-col font-body overflow-hidden">
             <Navbar />
 
             {/* Hero Section of Menu */}
-            <div className="relative pt-32 sm:pt-40 pb-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
+            <div className="relative pt-32 sm:pt-40 pb-16 px-4 sm:px-6 lg:px-8 text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -119,12 +158,48 @@ export default function MenuPage() {
                     <h1 className="font-heading text-6xl sm:text-8xl md:text-9xl text-[#721011] font-bold tracking-widest mb-6 sm:mb-8">SUÜKR</h1>
                     <div className="inline-block border-y border-[#721011] border-dashed py-3 sm:py-4 px-4 sm:px-12">
                         <p className="text-xs sm:text-sm md:text-base tracking-[0.2em] sm:tracking-[0.3em] text-[#721011] font-bold uppercase">
-                            Visual Menu
+                            Shakes • Cold Brew • Desserts
                         </p>
                     </div>
                 </motion.div>
+
+                {/* Animated Mocha Character */}
+                <motion.div 
+                    initial={{ opacity: 0, x: -50, rotate: -10 }}
+                    animate={{ opacity: 1, x: 0, rotate: 0 }}
+                    transition={{ duration: 1, delay: 0.5, type: "spring" }}
+                    className="absolute left-4 sm:left-12 top-40 hidden lg:block z-20 pointer-events-none"
+                >
+                    <Image 
+                        src="/images/mocha_character.png" 
+                        alt="Mocha Character" 
+                        width={220} 
+                        height={220} 
+                        className="object-contain"
+                    />
+                </motion.div>
             </div>
 
+            {/* Most Loved Banner */}
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="w-full max-w-5xl mx-auto px-4 mb-20 text-center text-[#721011]"
+            >
+                <h2 className="font-heading text-2xl md:text-3xl font-bold uppercase tracking-widest mb-6">Most Loved</h2>
+                <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-10 text-sm md:text-base font-bold tracking-[0.2em] uppercase">
+                    <p>Nitro Cold Brew</p>
+                    <span className="hidden sm:inline opacity-30">•</span>
+                    <p>Italian Hot Chocolate</p>
+                    <span className="hidden sm:inline opacity-30">•</span>
+                    <p>Strawberry Cream Waffle</p>
+                    <span className="hidden sm:inline opacity-30">•</span>
+                    <p>Pistachio Knafeh</p>
+                </div>
+            </motion.div>
+
+            {/* Visual Menu Sections */}
             <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
                 {menuSections.map((section, idx) => (
                     <motion.section
@@ -138,7 +213,6 @@ export default function MenuPage() {
                         {/* Images Collage */}
                         <div className="w-full lg:w-1/2 relative h-[400px] sm:h-[500px] lg:h-[600px] flex justify-center items-center">
                             {section.images.map((img, i) => {
-                                // Slightly staggered z-index and positions for a scattered collage look
                                 const isFirst = i === 0;
                                 const rotate = i % 2 === 0 ? (i * 3) : -(i * 4);
                                 const xOffset = i === 1 ? '10%' : i === 2 ? '-15%' : i === 3 ? '15%' : '0%';
@@ -187,9 +261,11 @@ export default function MenuPage() {
                                                 {item.name}
                                             </h3>
                                         </div>
-                                        <p className="text-[11px] sm:text-xs tracking-widest text-[#721011]/70 uppercase leading-relaxed max-w-[85%] group-hover:text-[#721011] transition-colors">
-                                            {item.desc}
-                                        </p>
+                                        {item.desc && (
+                                            <p className="text-[11px] sm:text-xs tracking-widest text-[#721011]/70 uppercase leading-relaxed max-w-[85%] group-hover:text-[#721011] transition-colors">
+                                                {item.desc}
+                                            </p>
+                                        )}
                                     </motion.div>
                                 ))}
                             </div>
@@ -201,7 +277,7 @@ export default function MenuPage() {
             {/* Bottom Floating Bar */}
             <div className="w-full bg-[#EBE2D4] py-4 mt-auto text-center border-t border-[#721011]/20 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
                 <div className="flex items-center gap-2">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="3" className="w-4 h-4"><path d="M12 22C12 22 20 18 20 12C20 6 12 2 12 2C12 2 4 6 4 12C4 18 12 22 12 22Z" /></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#8BB763" strokeWidth="3" className="w-4 h-4"><path d="M12 22C12 22 20 18 20 12C20 6 12 2 12 2C12 2 4 6 4 12C4 18 12 22 12 22Z" /></svg>
                     <span className="text-xs tracking-widest text-[#721011] uppercase font-bold">Vegan options available</span>
                 </div>
             </div>

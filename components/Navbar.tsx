@@ -1,19 +1,29 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const router = useRouter();
     const pathname = usePathname();
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     const navItems = [
         { label: "Menu", action: "route", href: "/menu" },
+        { label: "Shop", action: "link", href: "https://suukr.myshopify.com/collections/all" },
         { label: "Best Sellers", action: "scroll", id: "best-sellers" },
-        { label: "E-Gift", action: "link", href: "https://suukr.myshopify.com/" },
+        { label: "E-Gift", action: "link", href: "https://suukr.myshopify.com/products/suukr-gift-card" },
         { label: "Contact Us", action: "scroll", id: "contact-us" },
     ];
 
@@ -37,14 +47,14 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="absolute top-0 left-0 w-full z-40">
+            <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#F8EFE6]/90 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
                 {/* Navbar content without background */}
-                <div className="relative bg-transparent">
-                    <div className="flex items-center justify-between px-4 sm:px-6 md:px-16 py-4 sm:py-6">
+                <div className="relative">
+                    <div className={`flex items-center justify-between px-4 sm:px-6 md:px-16 transition-all duration-300 ${scrolled ? 'py-3 sm:py-4' : 'py-4 sm:py-6'}`}>
                         {/* Logo */}
                         <button
                             onClick={() => router.push('/')}
-                            className="text-[#D5AF34] font-heading font-bold text-2xl sm:text-3xl tracking-widest cursor-pointer hover:opacity-80 transition-opacity"
+                            className="text-[#D5AF34] font-heading font-bold text-3xl sm:text-4xl lg:text-5xl tracking-widest cursor-pointer hover:opacity-80 hover:scale-105 transition-all drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]"
                         >
                             SUÜKR
                         </button>
@@ -55,7 +65,7 @@ export default function Navbar() {
                                 <button
                                     key={idx}
                                     onClick={() => handleNavClick(item)}
-                                    className="text-[#721011] font-body font-bold text-base lg:text-lg tracking-wide relative group transition-all duration-300 cursor-pointer"
+                                    className="text-[#721011] font-body font-bold text-base lg:text-lg tracking-wide relative group transition-all duration-300 cursor-pointer hover:scale-105"
                                 >
                                     {item.label}
                                     <span className="absolute bottom-0 left-1/2 h-[2px] w-0 bg-[#721011] transition-all duration-300 group-hover:w-1/2" />
@@ -68,8 +78,8 @@ export default function Navbar() {
                         <div className="flex items-center gap-3">
                             {/* Desktop CTA */}
                             <button
-                                onClick={() => handleNavClick({ action: "scroll", id: "contact-us" })}
-                                className="hidden sm:block px-4 sm:px-6 py-2 bg-[#D5AF34] text-whiteOff font-body font-bold text-sm sm:text-base rounded-full shadow-md hover:bg-[#c49e24] transition-colors"
+                                onClick={() => handleNavClick({ action: "link", href: "https://suukr.myshopify.com/" })}
+                                className="hidden sm:block px-4 sm:px-6 py-2 bg-[#D5AF34] text-whiteOff font-body font-bold text-sm sm:text-base rounded-full shadow-md hover:scale-105 hover:bg-[#c49e24] transition-all"
                             >
                                 Order Now
                             </button>
@@ -119,7 +129,7 @@ export default function Navbar() {
                                             setIsMenuOpen(false);
                                             router.push('/');
                                         }}
-                                        className="text-[#D5AF34] font-heading font-bold text-2xl tracking-widest cursor-pointer hover:opacity-80 transition-opacity text-left"
+                                        className="text-[#D5AF34] font-heading font-bold text-3xl tracking-widest cursor-pointer hover:opacity-80 hover:scale-105 transition-all text-left"
                                     >
                                         SUÜKR
                                     </button>
@@ -151,8 +161,8 @@ export default function Navbar() {
                                 {/* Mobile CTA */}
                                 <div className="p-6 border-t border-gray-100">
                                     <button
-                                        onClick={() => handleNavClick({ action: "scroll", id: "contact-us" })}
-                                        className="w-full px-6 py-4 bg-[#D5AF34] text-whiteOff font-body font-bold text-lg rounded-full shadow-md hover:bg-[#c49e24] transition-colors"
+                                        onClick={() => handleNavClick({ action: "link", href: "https://suukr.myshopify.com/" })}
+                                        className="w-full px-6 py-4 bg-[#D5AF34] text-whiteOff font-body font-bold text-lg rounded-full shadow-md hover:scale-105 hover:bg-[#c49e24] transition-all"
                                     >
                                         Order Now
                                     </button>

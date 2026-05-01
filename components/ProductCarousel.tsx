@@ -3,7 +3,6 @@
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type Product = {
     id: number;
@@ -186,7 +185,7 @@ export default function ProductCarousel() {
                             />
 
                             {/* Subtle dark gradient for depth */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-[1]" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-[1]" />
 
                             {/* Tag badge */}
                             {product.tag && (
@@ -205,47 +204,15 @@ export default function ProductCarousel() {
                                 </div>
                             )}
 
-                            {/* Glass morphism description overlay */}
-                            <div className="absolute inset-x-0 bottom-0 z-10 p-2 sm:p-3">
-                                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg border-2 border-white/30">
-                                    {/* Glass base */}
-                                    <div className="absolute inset-0 bg-white/8 backdrop-blur-2xl rounded-xl sm:rounded-2xl" />
-                                    {/* Gradient border overlay */}
-                                    <div className="absolute -inset-0.5 bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-xl sm:rounded-2xl -z-10" />
-                                    {/* Top shine */}
-                                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-                                    {/* Shimmer gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent rounded-xl sm:rounded-2xl" />
-
-                                    <div className="relative px-3 sm:px-4 py-2.5 sm:py-3.5">
-                                        <h3 className="text-white font-heading text-base sm:text-lg md:text-xl font-semibold leading-tight drop-shadow-sm">
-                                            {product.name}
-                                        </h3>
-                                        <p className="text-white/80 font-body text-xs sm:text-sm mt-1 leading-snug tracking-wide drop-shadow-sm">
-                                            {product.description}
-                                        </p>
-                                    </div>
-                                </div>
+                            {/* Minimal and premium title */}
+                            <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 text-center transform transition-transform duration-500 group-hover:-translate-y-2">
+                                <h3 className="text-white font-heading text-xl sm:text-2xl md:text-3xl font-bold leading-tight drop-shadow-lg tracking-wide">
+                                    {product.name}
+                                </h3>
                             </div>
                         </motion.div>
                     );
                 })}
-
-                {/* Prev / Next arrows — positioned on the sides of the center card */}
-                <button
-                    onClick={handlePrev}
-                    aria-label="Previous"
-                    className="absolute left-1/2 -translate-x-[120px] sm:-translate-x-[150px] md:-translate-x-[200px] lg:-translate-x-[250px] z-40 bg-white backdrop-blur-sm text-deepRed rounded-full p-2 sm:p-2.5 shadow-md transition cursor-pointer hover:scale-110 hover:shadow-xl active:scale-95 duration-200 min-w-[44px] min-h-[44px]"
-                >
-                    <ChevronLeft size={16} className="sm:w-5 sm:h-5" />
-                </button>
-                <button
-                    onClick={handleNext}
-                    aria-label="Next"
-                    className="absolute left-1/2 translate-x-[75px] sm:translate-x-[105px] md:translate-x-[155px] lg:translate-x-[205px] z-40 bg-white backdrop-blur-sm text-deepRed rounded-full p-2 sm:p-2.5 shadow-md transition cursor-pointer hover:scale-110 hover:shadow-xl active:scale-95 duration-200 min-w-[44px] min-h-[44px]"
-                >
-                    <ChevronRight size={16} className="sm:w-5 sm:h-5" />
-                </button>
             </div>
 
             {/* Dot indicators */}

@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function GiftBanner() {
     const clipPath = useMemo(() => {
@@ -66,7 +68,26 @@ export default function GiftBanner() {
                     </div>
 
                     {/* Right CTA Section - Golden Ratio spacing */}
-                    <div className="w-full md:w-2/5 flex justify-center md:justify-end">
+                    <div className="w-full md:w-2/5 flex justify-center md:justify-end relative">
+                        {/* Human Illustration Pointing */}
+                        <motion.div 
+                            className="absolute hidden md:flex flex-col items-center gap-0 right-[160px] lg:right-[180px] top-[-10px] pointer-events-none z-30"
+                            animate={{ x: [0, -10, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                            <span className="font-heading text-[#D5AF34] font-bold text-xl lg:text-2xl uppercase tracking-widest drop-shadow-md -rotate-6 mb-[-20px] z-10">
+                                Get Yours!
+                            </span>
+                            <div className="relative w-[140px] h-[140px] mix-blend-screen opacity-90">
+                                <Image
+                                    src="/images/hand_pointing.png"
+                                    alt="Pointing Hand"
+                                    fill
+                                    className="object-contain"
+                                />
+                            </div>
+                        </motion.div>
+
                         <button
                             onClick={() => window.open("https://suukr.myshopify.com/", "_blank")}
                             className="group w-[100px] h-[100px] sm:w-[140px] sm:h-[140px] md:w-[180px] md:h-[180px] bg-[#D5AF34] rounded-full flex flex-col items-center justify-center text-white font-sans transition-all duration-300 ease-out hover:scale-105 hover:shadow-[0_10px_20px_rgba(0,0,0,0.2)] active:scale-95 cursor-pointer shadow-lg min-w-[44px] min-h-[44px]"

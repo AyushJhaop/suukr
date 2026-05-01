@@ -9,21 +9,15 @@ const categories = [
         title: "Desserts",
         image: "/images/SUUKR_tripple chocolate waffle_2880x2304.jpg",
         icon: (
-            <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-28 md:h-28 mb-8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                {/* Waffle base */}
-                <rect x="25" y="45" width="50" height="35" rx="4" />
-                {/* Waffle grid pattern */}
-                <line x1="35" y1="45" x2="35" y2="80" />
-                <line x1="45" y1="45" x2="45" y2="80" />
-                <line x1="55" y1="45" x2="55" y2="80" />
-                <line x1="65" y1="45" x2="65" y2="80" />
-                <line x1="25" y1="55" x2="75" y2="55" />
-                <line x1="25" y1="65" x2="75" y2="65" />
-                <line x1="25" y1="75" x2="75" y2="75" />
-                {/* Cherry on top */}
-                <circle cx="45" cy="35" r="4" fill="currentColor" />
-                <circle cx="55" cy="35" r="4" fill="currentColor" />
-                <path d="M 45 31 Q 50 25 55 31" fill="none" strokeWidth="2" />
+            <svg viewBox="0 0 100 100" className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 mb-8 sm:mb-12" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
+                {/* Top pancake */}
+                <ellipse cx="50" cy="35" rx="35" ry="12" />
+                {/* Middle pancake rim */}
+                <path d="M 15 50 Q 15 62 50 62 Q 85 62 85 50" />
+                {/* Bottom pancake rim */}
+                <path d="M 15 65 Q 15 77 50 77 Q 85 77 85 65" />
+                {/* Syrup Blob */}
+                <path d="M 45 47 L 45 65 A 5 5 0 0 0 55 65 L 55 50 A 5 5 0 0 1 65 50 L 65 60 A 5 5 0 0 0 75 60 L 75 42" fill="currentColor" stroke="currentColor" strokeWidth="2" />
             </svg>
         )
     },
@@ -31,18 +25,17 @@ const categories = [
         title: "Self-Serve Frozen Yoghurt",
         image: "/images/vanilla_froyo.png",
         icon: (
-            <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-28 md:h-28 mb-8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                {/* Cup */}
-                <path d="M 30 50 L 70 50 L 65 85 C 65 88 60 90 50 90 C 40 90 35 88 35 85 Z" />
-                {/* Rim */}
-                <ellipse cx="50" cy="50" rx="20" ry="3" />
-                {/* Swirl - elegant spiral */}
-                <path d="M 50 50 C 45 45 40 40 45 35 C 50 30 55 35 50 40 C 45 45 50 50 50 50" fill="none" strokeWidth="2.5" />
-                <path d="M 50 40 C 55 35 60 30 55 25 C 50 20 45 25 50 30" fill="none" strokeWidth="2.5" />
-                {/* Toppings dots */}
-                <circle cx="42" cy="45" r="1.5" fill="currentColor" />
-                <circle cx="58" cy="42" r="1.5" fill="currentColor" />
-                <circle cx="48" cy="38" r="1.5" fill="currentColor" />
+            <svg viewBox="0 0 100 100" className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 mb-8 sm:mb-12" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
+                {/* Bowl Rim */}
+                <path d="M 10 65 L 90 65" />
+                {/* Bowl Body */}
+                <path d="M 18 65 L 24 85 C 30 92 70 92 76 85 L 82 65" />
+                {/* Froyo Outline */}
+                <path d="M 22 65 C 10 50 35 42 42 52" /> 
+                <path d="M 36 45 C 30 30 50 25 52 35" />
+                <path d="M 48 30 C 40 10 65 10 60 30" />
+                <path d="M 60 30 C 75 25 75 45 62 50" />
+                <path d="M 60 43 C 80 40 85 60 78 65" />
             </svg>
         )
     },
@@ -50,19 +43,22 @@ const categories = [
         title: "Coffee",
         image: "/images/SUUKR_vanilla cold foam cold brew_2880x2304.jpg",
         icon: (
-            <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-28 md:h-28 mb-8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                {/* Coffee cup */}
-                <path d="M 25 40 L 25 70 C 25 75 30 80 35 80 L 55 80 C 60 80 65 75 65 70 L 65 40" />
-                {/* Cup rim */}
-                <path d="M 20 40 L 70 40" strokeWidth="4" />
-                {/* Handle */}
-                <path d="M 65 50 C 75 50 75 60 65 60" />
-                {/* Steam lines - modern minimal */}
-                <path d="M 35 30 C 35 25 35 25 35 20" strokeWidth="2" />
-                <path d="M 45 32 C 45 27 45 27 45 22" strokeWidth="2" />
-                <path d="M 55 30 C 55 25 55 25 55 20" strokeWidth="2" />
-                {/* Coffee surface */}
-                <ellipse cx="45" cy="45" rx="18" ry="3" fill="currentColor" opacity="0.3" />
+            <svg viewBox="0 0 100 100" className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 mb-8 sm:mb-12" fill="currentColor">
+                {/* Top Bean */}
+                <g transform="translate(50, 30) rotate(-15) scale(1.1)">
+                    <path d="M 0 -20 C -30 -20 -30 20 0 20 C -15 5 15 -5 0 -20 Z" />
+                    <path d="M 6 20 C 36 20 36 -20 6 -20 C 21 -5 -9 5 6 20 Z" />
+                </g>
+                {/* Bottom Left Bean */}
+                <g transform="translate(30, 65) rotate(-60) scale(1)">
+                    <path d="M 0 -20 C -30 -20 -30 20 0 20 C -15 5 15 -5 0 -20 Z" />
+                    <path d="M 6 20 C 36 20 36 -20 6 -20 C 21 -5 -9 5 6 20 Z" />
+                </g>
+                {/* Bottom Right Bean */}
+                <g transform="translate(70, 65) rotate(45) scale(1)">
+                    <path d="M 0 -20 C -30 -20 -30 20 0 20 C -15 5 15 -5 0 -20 Z" />
+                    <path d="M 6 20 C 36 20 36 -20 6 -20 C 21 -5 -9 5 6 20 Z" />
+                </g>
             </svg>
         )
     },
@@ -70,19 +66,16 @@ const categories = [
         title: "Shakes",
         image: "/images/SUUKR_maltease shake_2880x2304.jpg",
         icon: (
-            <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-28 md:h-28 mb-8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                {/* Glass */}
-                <path d="M 35 45 L 35 75 C 35 80 40 85 45 85 L 55 85 C 60 85 65 80 65 75 L 65 45" />
-                {/* Shake content */}
-                <path d="M 35 45 L 35 65 C 35 70 40 75 45 75 L 55 75 C 60 75 65 70 65 65 L 65 45" fill="currentColor" opacity="0.2" />
-                {/* Whipped cream top */}
-                <path d="M 35 45 C 40 35 60 35 65 45" fill="currentColor" opacity="0.3" />
-                <path d="M 40 40 C 45 30 55 30 60 40" fill="none" strokeWidth="2" />
+            <svg viewBox="0 0 100 100" className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 mb-8 sm:mb-12" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
+                {/* Cup Bottom */}
+                <path d="M 30 55 L 35 85 Q 50 90 65 85 L 70 55" />
+                {/* Cup Rim */}
+                <path d="M 20 55 Q 50 60 80 55 Q 50 50 20 55 Z" />
+                {/* Dome Lid */}
+                <path d="M 25 53 C 25 20 75 20 75 53" />
+                <path d="M 40 30 C 40 20 60 20 60 30" />
                 {/* Straw */}
-                <rect x="48" y="15" width="4" height="35" rx="2" />
-                {/* Cherry */}
-                <circle cx="50" cy="25" r="3" fill="currentColor" />
-                <path d="M 50 22 Q 52 18 54 20" fill="none" strokeWidth="1.5" />
+                <line x1="50" y1="23" x2="50" y2="5" />
             </svg>
         )
     }
@@ -97,11 +90,10 @@ export default function Categories() {
                 {categories.map((category, idx) => (
                     <div
                         key={idx}
-                        className={`relative flex flex-col items-center justify-center py-12 sm:py-16 px-4 sm:px-6 cursor-pointer group min-h-[200px] sm:min-h-[250px]
-                        ${idx < 3 ? 'lg:border-r lg:border-deepRed/20' : ''} 
-                        ${(idx === 0 || idx === 1) ? 'sm:border-b lg:border-b-0 sm:border-deepRed/20' : ''}
-                        ${(idx % 2 === 0) ? 'sm:border-r sm:border-deepRed/20 lg:border-r-0' : ''}
-                        ${idx === 2 ? 'lg:border-r lg:border-deepRed/20' : ''}
+                        className={`relative flex flex-col items-center justify-center py-12 sm:py-16 px-4 sm:px-6 cursor-pointer group min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] border-[#721011]
+                        ${idx === 0 ? 'border-b sm:border-r sm:border-b lg:border-b-0 lg:border-r' : ''}
+                        ${idx === 1 ? 'border-b sm:border-b lg:border-b-0 lg:border-r' : ''}
+                        ${idx === 2 ? 'border-b sm:border-b-0 sm:border-r lg:border-b-0 lg:border-r' : ''}
                         `}
                         onMouseEnter={() => setHoveredCategory(idx)}
                         onMouseLeave={() => setHoveredCategory(null)}
