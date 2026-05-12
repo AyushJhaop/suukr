@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-softPink: #FFDEDE;
+  --color-deepRed: #721011;
+  --color-cream: #F7F1E5;
+  --color-gold: #D5AF34;
+  --color-black: #000000;
+  --color-whiteOff: #FEF2F2;
+
+  --font-heading: var(--font-fredoka);
+  --font-body: var(--font-inter);
+}
+
+body {
+  background-color: var(--color-whiteOff);
+  color: var(--color-black);
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-fredoka), sans-serif;
+}
+

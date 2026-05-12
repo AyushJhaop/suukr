@@ -1,0 +1,6 @@
+node_modules/
+.next/
+public/images/venv/
+.env
+.DS_Store
+instructions.md
