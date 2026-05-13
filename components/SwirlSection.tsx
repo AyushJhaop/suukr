@@ -36,7 +36,6 @@ export default function SwirlSection() {
 
     const getCardProps = (index: number) => {
         const diff = (index - activeIndex + flavours.length) % flavours.length;
-
         let x = "0vw";
         let scale = 1;
         let opacity = 1;
